@@ -1,0 +1,455 @@
+#what-is-speks-about-us, #about{
+  .se-pre-con{
+    display: none;
+  }
+  .shopify-section{
+    position: relative;
+  }
+  .full-width-image__speks{
+    margin-top: -160px;
+    overflow: visible;
+    bottom: 0;
+  }
+
+  .ig-feed{
+    margin-top: -100px;
+    z-index: 10;
+    @include media('<tablet'){
+      margin-top: -70px;
+    }
+  }
+}
+#speks-wholesale-opportunities-bulk-cheap-wholesale-magnetic-balls{
+  .ig-feed{
+    margin-top: -100px;
+    z-index: 10;
+    @include media('<tablet'){
+      margin-top: -70px;
+    }
+  }
+}
+.about{
+
+  &__hero{
+    background-image: url(../assets/about-hero.svg);
+    background-size: 102% 100%;
+    padding: 100px 0 290px;
+    position: relative;
+    z-index:11;
+    color: white;
+    text-align: center;
+    @include media('<desktop'){
+      min-height: 0;
+      padding: 100px 0 200px;
+    }
+    @include media('<=pro'){
+      min-height: 0;
+      padding: 100px 0 125px;
+    }
+    @include media('<tablet'){
+      min-height: 0;
+      padding: 60px 0 125px;
+      background-image: url(../assets/about-hero-mobile.svg);
+    }
+    h1{
+      max-width: 90%;
+      margin: 0 auto;
+      @include media('<1650px'){
+        font-size: 90px;
+        line-height: 90px;
+      }
+      @include media('<1230px'){
+        font-size: 70px;
+        line-height: 70px;
+      }
+      @include media('<tablet'){
+        font-size: 40px;
+        line-height: 40px;
+      }
+    }
+    .h4{
+      color: #333f48;
+    }
+  }
+  &__gif{
+    margin: 60px auto 30px;
+    width: 85%;
+    @include media('<tablet'){
+      margin: 30px auto 10px;
+    }
+  }
+
+  &__iwt{
+    width: 100%;
+    .image-with-text__text{
+      max-width: 500px;
+      width: 50%;
+      flex: 0 0 50%;
+    @include media('<tablet'){
+      flex: 0 0 100%;
+    }
+      p{
+        font-size: 20px;
+        line-height: 20px;
+      }
+    }
+    .image-with-text__image{
+      flex: 0 0 50%;
+      @include media('<tablet'){
+        flex: 0 0 100%;
+      }
+    }
+    &-1{
+      background-image: url(../assets/about-mission.svg);
+      background-size: 100% 100%;
+      position: relative;
+      z-index:10;
+      color: white;
+      padding: 200px 15% 180px;
+      min-height: 500px;
+      margin-top: -200px;
+      @include media('<tablet'){
+        background-image: url(../assets/about-mission-mobile.svg);
+      }
+      @include media('<phone'){
+        position: relative;
+        width: 100%;
+        padding: 120% 6% 80px;
+      }
+      .image-with-text__image{
+        position: absolute;
+        top: 0;
+        width: 40%;
+
+      }
+      p{
+        color: white;
+        font-size: 20px;
+        line-height: 20px;
+      }
+      .h3{
+        color: #ffa38b;
+        margin-bottom: 20px;
+        @include media('<tablet'){
+          font-size: 40px;
+          line-height: 40px;
+        }
+      }
+
+    }&-2{
+      background-image: url(../assets/about-who.svg);
+      background-size: 102% 100%;
+      position: relative;
+      z-index:9;
+      padding: 50px 100px;
+      margin-top: -120px;
+      @include media('<pro'){
+        padding: 70px ;
+        margin-top: -132px;
+      }
+      @include media('<tablet'){
+        padding: 90px 6% 60px;
+        margin-top: -90px;
+        background-image: url(../assets/about-who-mobile.svg);
+      }
+      .image-with-text__text{
+        align-self: center;
+
+      }
+      .image-with-text__image{
+        transform: rotate(-10deg);
+      }
+      .h3{
+        color: #007367;
+        margin-bottom: 20px;
+        @include media('<tablet'){
+          font-size: 40px;
+          line-height: 40px;
+        }
+      }
+
+    }
+  }
+
+  &__press{
+    background-image: url(../assets/about-test2.svg);
+    background-size: 130% 100%;
+    position: relative;
+    z-index:9;
+    margin-top:-123px;
+    padding: 85px 6% 150px;
+    text-align: center;
+    color: white;
+    @include media('<tablet'){
+      padding: 50px 6% 70px;
+      background-size:150% 100%;
+        background-position: center;
+    }
+    p, a{
+      color: white;
+    }
+    a{
+
+      border-bottom: 1px solid white;
+    }
+
+    h3{
+      color: #9bcbeb;
+        @include media('<tablet'){
+          font-size: 40px;
+          line-height: 40px;
+    }
+  }
+  }
+}
+
+.press{
+
+
+  &__flex{
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0 100px;
+    flex-wrap: wrap;
+    @include media('<tablet'){
+      margin: 20px 0 50px;
+    }
+    p{
+      color: white;
+    }
+
+    .slick-slide:nth-child(1),  {
+      @include media('<tablet'){
+        .press__text{
+          background-color: #b5e3d8;
+          color: $green;
+          &:after{
+          border-color: #b5e3d8 transparent transparent transparent;
+          }
+        }
+      }
+    }
+    .slick-slide:nth-child(2){
+      @include media('<tablet'){
+        .press__text{
+          background-color:#ffa38b;
+          color: $purple;
+          &:after{
+          border-color: #ffa38b transparent transparent transparent;
+          }
+        }
+      }
+    }
+    .slick-slide:nth-child(6){
+      @include media('<tablet'){
+        .press__text{
+          background-color:#ffa38b;
+          color: $purple;
+          &:after{
+          border-color: #ffa38b transparent transparent transparent;
+          }
+        }
+      }
+    }
+    .slick-slide:nth-child(3){
+      @include media('<tablet'){
+        .press__text{
+          background-color: #f9ad17;
+          color: white;
+          &:after{
+          border-color: #f9ad17 transparent transparent transparent;
+          }
+        }
+
+      }
+    }
+    .slick-slide:nth-child(7){
+      @include media('<tablet'){
+        .press__text{
+          background-color: #f9ad17;
+          color: white;
+          &:after{
+          border-color: #f9ad17 transparent transparent transparent;
+          }
+        }
+
+      }
+    }
+    .slick-slide:nth-child(4){
+      @include media('<tablet'){
+        .press__text{
+          background-color: #9bcbeb;
+          color: $blue;
+          &:after{
+          border-color: #9bcbeb transparent transparent transparent;
+          }
+        }
+      }
+    }
+    .slick-slide:nth-child(9){
+      @include media('<tablet'){
+        .press__text{
+          background-color: #9bcbeb;
+          color: $blue;
+          &:after{
+          border-color: #9bcbeb transparent transparent transparent;
+          }
+        }
+      }
+    }
+  }
+  &__item{
+    flex: 0 0 22%;
+    @include media('<=pro'){
+      flex: 0 0 23%;
+    }
+    @include media('<tablet'){
+      flex: 1 0 100%;
+      padding: 0 5% 30px;
+      display: flex!important;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    @include media
+    &:nth-child(1){
+      .press__text{
+        background-color: #b5e3d8;
+        color: $green;
+        &:after{
+        border-color: #b5e3d8 transparent transparent transparent;
+        }
+      }
+
+    }
+
+    &:nth-child(2){
+      .press__text{
+        background-color:#ffa38b;
+        color: $purple;
+        &:after{
+        border-color: #ffa38b transparent transparent transparent;
+        }
+      }
+
+    }
+    &:nth-child(8){
+      .press__text{
+        background-color:#ffa38b;
+        color: $purple;
+        &:after{
+        border-color: #ffa38b transparent transparent transparent;
+        }
+      }
+
+    }
+    &:nth-child(3){
+      .press__text{
+        background-color: #f9ad17;
+
+        &:after{
+        border-color: #f9ad17 transparent transparent transparent;
+        }
+      }
+
+    }
+    &:nth-child(5){
+
+      .press__text{
+        background-color: #f9ad17;
+
+        &:after{
+        border-color: #f9ad17 transparent transparent transparent;
+        }
+      }
+
+    }
+
+    &:nth-child(4){
+      .press__text{
+        background-color: #9bcbeb;
+        color: $blue;
+        &:after{
+        border-color: #9bcbeb transparent transparent transparent;
+        }
+      }
+
+    }
+    &:nth-child(6){
+      margin-top: 30px;
+      .press__text{
+        background-color: #9bcbeb;
+        color: $blue;
+        &:after{
+        border-color: #9bcbeb transparent transparent transparent;
+        }
+      }
+
+    }
+    &:nth-child(7){
+      .press__text{
+        background-color: $lime;
+        color: $green;
+        &:after{
+        border-color: $lime transparent transparent transparent;
+        }
+      }
+
+    }
+  }
+  &__text{
+    text-align: left;
+    padding: 20px 25px 35px;
+    margin-bottom: 80px;
+    position: relative;
+    &:after{
+      content: "";
+      position: absolute;
+      top: 100%;
+      width: 0;
+      height: 0;
+      right: 20%;
+      border-style: solid;
+      border-width: 45px 35px 0 0px;
+      border-color: #007bff transparent transparent transparent;
+    }
+    a{
+      color: white;
+      border-bottom: 1px solid white;
+    }
+    h4{
+      margin-bottom: 30px;
+
+      @include media('<=pro'){
+        font-size: 22px;
+        line-height: 22px;
+      }
+    }
+  }
+  &__logo{
+    max-width: 160px;
+    width: 65%;
+  }
+}
+
+.world__gif{
+  position: absolute;
+  width: 40%;
+  max-width: 570px;
+bottom: 120px;
+  left: 55%;
+  z-index: 12;
+  @include media('<tablet'){
+    width: 20%;
+    right: 0;
+    left: auto;
+  }
+  @include media('<phone'){
+    position: absolute;
+    width: 100%;
+    top: 10%;
+    left: 55%;
+    transform: translate(-50%);
+  }
+}

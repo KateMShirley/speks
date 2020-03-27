@@ -1,0 +1,77 @@
+
+
+<section class="product-hero product-hero__speks">
+  <div class="image-with-text__text">
+    {% if section.settings.title != blank %}
+      <h2>{{ section.settings.title | escape }}</h2>
+    {% endif %}
+  </div>
+<div class="slider-container">
+  <div id="speks-slider" >
+ <!-- The before image is first -->
+ <img src={{ '../assets/shape.png' | asset_url }}>
+ <img src={{ '../assets/clump.png' | asset_url }}>
+ <!-- The after image is last -->
+
+</div>
+<div class='diagrams speks-slider speks-slider__purple'>
+<div class="diagram diagram__1">
+  <h6>2.5mm powerful rare earth magnets</h6>
+</div>
+<div class="diagram diagram__2">
+  <h6>tarnish, rust and boredom free.</h6>
+</div>
+<div class="diagram diagram__3">
+  <h6>meets all safety standards.</h6>
+  <div class="safety-icons">
+    <div class="icon-group">
+      <img src={{ '../assets/astm.png' | asset_url }}>
+      <p class="tiny">ASTM</p>
+    </div>
+    <div class="icon-group">
+      <img src={{ '../assets/en71.png' | asset_url }}>
+      <p class="tiny">EN71</p>
+    </div>
+    <div class="icon-group">
+      <img src={{ '../assets/cpsia.png' | asset_url }}>
+      <p class="tiny">CPSIA</p>
+    </div>
+    <div class="icon-group">
+      <img src={{ '../assets/ages.png' | asset_url }}>
+      <p class="tiny">ages 14+</p>
+    </div>
+
+  </div>
+</div>
+<div class="diagram diagram__4">
+  <h6>over 30+ designer approved colors.</h6>
+</div>
+</div>
+</div>
+
+</section>
+
+{% schema %}
+  {
+    "name": "Speks Product Hero",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Product Hero"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Speks Product Hero",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

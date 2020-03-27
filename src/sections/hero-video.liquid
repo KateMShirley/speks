@@ -1,0 +1,145 @@
+<style>
+
+ /* .index-section:nth-of-type(1){
+  position: sticky;
+  top: 0;
+ } */
+</style>
+
+  {% capture video_layout_desktop %}
+
+    {% if section.settings.video_url != blank %}
+
+      <div class="full-width full-width__video">
+        <div class="wrapper">
+              <div class="video-wrapper">
+
+                      {% if section.settings.video_url.type == "youtube" %}
+                        <iframe class="lazyload video-wrapper-desktop-iframe" data-src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?rel=0&amp;showinfo=0&autoplay=1&controls=0&loop=1&playlist={{ section.settings.video_url.id }}&mute=1&enablejsapi=1" width="100%" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                      {% endif %}
+
+                      {% if section.settings.video_url.type == "vimeo" %}
+                        <!-- <iframe src="https://www.youtube.com/embed/{{ section.settings.video_url_super.id }}?rel=0&amp;showinfo=0&autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_url_super.id }}" width="850" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+                        <iframe allow="autoplay" class="lazyload video-wrapper-desktop-iframe" data-src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?api=1&autoplay=1&background=1&loop=1&autopause=0" width="100%" frameborder="0" allowfullscreen></iframe>
+                      {% endif %}
+
+
+
+                      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+                        <a class="btn btn__green btn__hero" href="{{ section.settings.button_link }}">
+                          {{ section.settings.button_label | escape }}
+                        </a>
+                      {% endif %}
+              </div>
+
+        </div>
+      </div>
+    {% endif %}
+  {% endcapture %}
+
+  {% capture video_layout_mobile %}
+
+    {% if section.settings.video_url != blank %}
+
+      <div class="main_image">
+        <div class="wrapper">
+          <div class="grid">
+            <div class="grid__item one-whole">
+              <div class="video-wrapper">
+                  {% if section.settings.video_url.type == "youtube" %}
+                    <iframe class="lazyload video-wrapper-desktop-iframe" data-src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?rel=0&amp;showinfo=0&autoplay=1&controls=0&loop=1&playlist={{ section.settings.video_url.id }}&mute=1&enablejsapi=1" width="100%" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                  {% endif %}
+
+                  {% if section.settings.video_url.type == "vimeo" %}
+                    <!-- <iframe src="https://www.youtube.com/embed/{{ section.settings.video_url_super.id }}?rel=0&amp;showinfo=0&autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_url_super.id }}" width="850" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+                    <iframe allow="autoplay" class="lazyload video-wrapper-desktop-iframe" data-src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?api=1&autoplay=0&loop=1&autopause=0" width="100%" frameborder="0" allowfullscreen></iframe>
+                  {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+          <a class="btn btn__hero" style="color: {{ section.settings.button_color }}" href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label | escape }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endcapture %}
+
+
+
+      <div class="feature-row small--hide">
+          <div class="medium-up--one-whole">{{ video_layout_desktop }}</div>
+      </div>
+
+      <div class="feature-row medium-up--hide">
+          {{ video_layout_mobile }}
+      </div>
+
+
+
+</div>
+
+<script>
+    // $(function(){
+    //     var widowWidth = $(window).width();
+    //     console.log(widowWidth);
+    //     if(widowWidth < 750){
+    //         setTimeout(function() {
+    //             $(".video-wrapper-desktop-iframe").each(function(){
+    //                 console.log('stop desktop video', this.contentWindow)
+    //                 this.contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
+    //               });
+    //         }, 2000);
+    //     }
+    // });
+
+    // $(window).resize(function(){
+    //     var widowWidth = $(window).width();
+    //     console.log(widowWidth);
+    //     if(widowWidth < 750){
+    //         $(".video-wrapper-desktop-iframe").each(function(){
+    //             console.log('stop desktop video', this.contentWindow)
+    //             this.contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
+    //         });
+    //     }else{
+    //         $(".video-wrapper-mobile-iframe").each(function(){
+    //             console.log('stop mobile video', this.contentWindow)
+    //             this.contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
+    //         });
+    //      }
+    // });
+
+</script>
+
+{% schema %}
+  {
+    "name": "Hero Video",
+    "class": "index-section",
+    "settings": [
+      {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Video link",
+          "accept": ["youtube", "vimeo"]
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Video",
+        "category": "Video"
+      }
+  ]
+  }
+{% endschema %}

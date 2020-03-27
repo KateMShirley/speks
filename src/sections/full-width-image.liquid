@@ -1,0 +1,32 @@
+
+
+<section class="full-width-image">
+  {% if section.settings.image != blank %}
+    {% include 'responsive-image' with
+      image: section.settings.image,
+      max_width: 1500,
+      max_height: 700
+    %}
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  {% endif %}
+</section>
+
+{% schema %}
+  {
+    "name": "Full-width Image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Full-width Image",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

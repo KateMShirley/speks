@@ -1,0 +1,69 @@
+<section class="tutorial gutter">
+  <ul class="tutorial__steps">
+      {% for block in section.blocks %}
+      <li class="tutorial__step">
+        {% if block.settings.image != blank %}
+          {% include 'responsive-image' with
+            image: block.settings.image,
+            max_width: 700,
+            max_height: 700
+          %}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+
+      {% if block.settings.title != blank %}
+        {% if block.settings.quick == true %}
+          <p class="title quick">{{ block.settings.title }}</p>
+          {% else %}
+        <p class="title">{{ block.settings.title }}</p>
+        {% endif %}
+        {% endif %}
+        {% if block.settings.desc != blank %}
+        <p>{{ block.settings.desc }}</p>
+        {% endif %}
+      {% endfor %}
+</li>
+
+  </ul>
+</section>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "How-to steps",
+
+    "blocks": [
+
+      {
+        "type": "Step",
+        "name": "How-to step",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Step header"
+          },
+          {
+            "type": "checkbox",
+            "id": "quick",
+            "label": "Quick tip? (tips get different title styles)"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Step description"
+          },
+          {
+           "type":      "image_picker",
+           "id":        "image",
+           "label":     "Step Image"
+         }
+        ]
+      }
+    ]
+  }
+{% endschema %}

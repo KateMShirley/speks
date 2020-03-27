@@ -1,0 +1,25 @@
+.full-width-image{
+  width: 100%;
+  position: relative;
+  >div{
+    width: 100%;
+    padding-bottom: 40%;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height:600px;
+
+    @include media('<1400px'){
+      padding-bottom: 50%;
+    }
+    @include media('<=pro'){
+      padding-bottom: 65%;
+    }
+    @include media('<tablet'){
+      background-attachment: scroll;
+    }
+  }
+  &__speks{
+    margin-top: -100px;
+  }
+}

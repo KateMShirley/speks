@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg preserveAspectRatio="none" 
+
+ width="1440px" height="843px" viewBox="0 0 1440 843" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+    <title>Mask</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-Page-HD" transform="translate(0.000000, -2453.000000)" fill="#FFFFFF">
+            <g id="Backgrounds" transform="translate(804.500000, 3664.500000) scale(1, -1) translate(-804.500000, -3664.500000) translate(-159.000000, 2158.000000)">
+                <path d="M161,1875.52914 L1601,1875.52914 L1602,2712.52914 C1368.96354,2648.32081 1145.29688,2637.98748 931,2681.52914 C716.703125,2725.07081 459.036458,2729.62498 158,2695.19164 L161,1875.52914 Z" id="Mask" transform="translate(880.000000, 2296.764571) scale(-1, -1) translate(-880.000000, -2296.764571) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

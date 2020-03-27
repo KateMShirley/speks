@@ -1,0 +1,250 @@
+@font-face {
+    font-family: 'bobby_jones';
+    src: url('fonts/bobby_jones-webfont.eot');
+    src: url('fonts/bobby_jones-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/bobby_jones-webfont.woff2') format('woff2'),
+         url('fonts/bobby_jones-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+$bobby: 'bobby_jones',sans-serif;
+
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $sofia;
+  font-weight: $regular;
+  font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $sofia;
+  font-weight: $bold;
+}
+
+h1, .h1{
+  text-transform: lowercase;
+  font-size: 120px;
+  letter-spacing: normal;
+  line-height: 121px;
+  color: inherit;
+  @include media('<desktop'){
+    font-size: 100px;
+    line-height: 102px;
+  }
+  @include media('<=pro'){
+    font-size: 70px;
+    line-height: 72px;
+  }
+  @include media('<tablet'){
+    font-size: 40px;
+    line-height: 42px;
+  }
+  &__extra{
+    font-size: 150px;
+    line-height: 150px;
+    @include media('<desktop'){
+      font-size: 120px;
+      line-height: 116px;
+    }
+    @include media('<pro'){
+      font-size: 100px;
+      line-height: 106px;
+    }
+    @include media('<tablet'){
+      font-size: 40px;
+      line-height: 40px;
+    }
+  }
+}
+
+h2, .h2{
+  text-transform: lowercase;
+  font-size: 70px;
+  letter-spacing: normal;
+  line-height: 71px;
+  @include media('<desktop'){
+    font-size: 50px;
+    line-height: 52px;
+  }
+  @include media('<=pro'){
+    font-size: 50px;
+    line-height: 52px;
+  }
+  @include media('<=phone'){
+    font-size: 23px;
+    line-height: 23px;
+  }
+}
+  h3, .h3{
+    text-transform: lowercase;
+    font-size: 50px;
+    letter-spacing: normal;
+    line-height: 51px;
+
+    @include media('<tablet'){
+      font-size: 30px;
+      line-height: 30px;
+    }
+  }
+
+h4, .h4{
+  text-transform: lowercase;
+  font-size: 30px;
+  letter-spacing: normal;
+  line-height: 34px;
+  color: inherit;
+  @include media('<tablet'){
+    font-size:18px;
+    line-height: 18px;
+  }
+}
+h5, .h5{
+  text-transform: lowercase;
+  font-size: 18px;
+  letter-spacing: .5px;
+  line-height: 18px;
+  color: inherit;
+  font-weight: normal;
+  @include media('<tablet'){
+    font-size:18px;
+    line-height: 18px;
+  }
+}
+
+h6, .h6{
+  text-transform: lowercase;
+  font-size: 16px;
+  letter-spacing: normal;
+  line-height: 16px;
+  color: inherit;
+}
+
+body,
+input,
+textarea,
+button,
+select {
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+}
+
+a:focus {
+  color: inherit;
+}
+
+.btn{
+  font-family: $sofia;
+  font-weight: $bold;
+  padding:20px 60px;
+  font-size: 20px;
+  line-height: 20px;
+  text-transform: lowercase;
+  background-color: white;
+  border: 3px solid;
+  border-radius: 0;
+  transition: all .2s ease-in-out;
+  color: $green;
+  border-color: $green;
+  display: inline-block;
+  margin-top: 25px;
+  &:hover{
+    color: white;
+    opacity: 1;
+    background-color: $green;
+  }
+  @include media('<=phone'){
+    padding:10px 30px;
+    font-size: 14px;
+    line-height: 14px;
+  }
+  &:active{
+    opacity: 1;
+  }
+
+  &__hero{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100px;
+    @include media('<751px'){
+      display: none;
+    }
+  }
+
+  &__green{
+    color: $green;
+    border-color: $green;
+
+    &:hover{
+      background-color: $green;
+    }
+  }
+  &__gray{
+    color: #333f48;
+    border-color: #333f48;
+
+    &:hover{
+      background-color: #333f48;
+    }
+  }
+  &__blue{
+    color: $blue;
+    border-color: $blue;
+
+    &:hover{
+      background-color: $blue;
+    }
+  }
+  &__purple{
+    color: $purple;
+    border-color: $purple;
+
+
+    &:hover{
+      background-color: $purple;
+    }
+  }
+  &__green-reverse{
+    color: white;
+    border-color: $green;
+    background-color: $green;
+
+    &:hover{
+      background-color: white;
+      color: $green;
+    }
+  }
+  &__yellow-reverse{
+    color: white;
+    border-color: #f9ad17;
+    background-color: #f9ad17;
+
+    &:hover{
+      background-color: white;
+      color: #f9ad17;
+    }
+  }
+}
+
+button.btn{
+  margin: 0;
+}
+
+form{
+  input{
+    &:focus{
+      outline-color: $green;
+    }
+  }
+}

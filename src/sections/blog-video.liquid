@@ -1,0 +1,17 @@
+{% assign video_link = article.metafields.global.video_link | append: "?rel=0&amp;showinfo=0&amp;autoplay=0&amp;controls=1&amp;loop=1&amp;mute=1&amp;enablejsapi=1" %}
+{% assign test = video_link  %}
+{% capture iframe %}
+              <iframe class="video-wrapper-desktop-iframe" src="{{ test }}" width="100%" frameborder="0" allow="encrypted-media" allowfullscreen=""></iframe>
+{% endcapture %}
+<section class="blog-video">
+  <div class=" full-width__video">
+    <div class="wrapper">
+
+          <div class="video-wrapper">
+
+            {{ iframe }}
+
+          </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,1111 @@
+.template-product{
+  #shopify-section-hero-video{
+    position: relative;
+    margin-top: -126px;
+    @include media('<tablet'){
+      margin-top: -37px;
+    }
+  }
+}
+.product-hero{
+  background-size: 105% 100%;
+  padding: 100px 0 150px;
+  background-position: top right;
+  position: relative;
+  z-index:11;
+  overflow: visible;
+  position: relative;
+  &__speks{
+    background-image: url(../assets/bg-speks-product.svg);
+    color: $purple;
+    text-align: center;
+
+    @include media('<tablet'){
+      background-image: url(../assets/bg-speks-product-mobile.svg);
+      padding: 50px 0 30px;
+    }
+    .twentytwenty-wrapper{
+      overflow: hidden;
+      z-index: 20;
+      position: relative;
+    }
+    .twentytwenty-container{
+      min-height: 200px;
+
+    }
+    .slider-container{
+      padding: 0 20px;
+      position: relative;
+      width: 50% !important;
+      max-width: 450px;
+      margin: 30px auto;
+      @include media('<tablet'){
+        width: 88% !important;
+      }
+      .diagrams{
+
+      }
+      .slick-slide{
+        @include media('<tablet'){
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+      }
+      .safety-icons{
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        margin-top: 7px;
+        @include media('<tablet'){
+          justify-content: center;
+          padding-bottom: 15px;
+        }
+        .icon-group{
+          flex: 0 0 25%;
+          text-align: center;
+          max-width: 40px;
+          margin-right: 5px;
+          img{
+            margin: 0 auto;
+            max-width: 28px;
+          }
+          p{
+            font-size: 10px;
+            color: $purple;
+          }
+        }
+      }
+      .diagram{
+        position: absolute;
+        width: 150px;
+        &:after{
+          content: "";
+          height: 2px;
+          width: 200px;
+          position: absolute;
+          top: 50%;
+          background-color: $purple;
+          @include media('<tablet'){
+            display: none;
+          }
+        }
+        @include media('<tablet'){
+          position: relative;
+          text-align: center !important;
+          width: 80%;
+        }
+        &__1{
+          top: 35%;
+          left: -190px;
+          text-align: right;
+          &:after{
+            left: calc(100% + 10px);
+          }
+          @include media('<pro'){
+            left: -130px;
+          }
+          @include media('<tablet'){
+            left: 0;
+            top: 0;
+          }
+        }
+        &__2{
+          top: 75%;
+          text-align: right;
+          left: -180px;
+
+          &:after{
+            left: calc(100% + 10px);
+          }
+          @include media('<tablet'){
+            left: 0;
+            top: 0;
+          }
+        }
+        &__3{
+          top:20%;
+          text-align: left;
+          right: -200px;
+          width: 200px;
+          &:after{
+            left: calc(-100% + -10px);
+          }
+          @include media('<pro'){
+            right: -150px;
+          }
+          @include media('<tablet'){
+            right: auto;
+            top: 0;
+          }
+        }
+        &__4{
+          top: 60%;
+          text-align: left;
+          right: -180px;
+
+          &:after{
+            left: calc(-100% + -60px);
+          }
+          @include media('<pro'){
+            right: -150px;
+          }
+          @include media('<tablet'){
+            right: auto;
+            top: 0;
+          }
+        }
+      }
+    }
+
+    #speks-slider{
+      margin: 0 auto;
+      display: block;
+      max-width: 450px;
+      overflow: visible;
+    }
+    .twentytwenty-handle{
+      border-color: #ffa38b;
+      background-color: #ffa38b;
+
+      // box-shadow: none;
+      &:before, &:after{
+        background-color: white;
+        box-shadow: 0 3px 0 #ffa38b
+        // , 0px 0px 12px rgba(51, 51, 51, 0.5)
+      }
+    }
+    .twentytwenty-left-arrow{
+      border-right-color: #833177;
+    }
+    .twentytwenty-right-arrow{
+      border-left-color: #833177;
+    }
+  }
+  &__unblocks{
+    background-image: url(../assets/bg-unblocks-product.svg);
+    color: $blue;
+    text-align: center;
+    padding: 120px 160px 180px;
+
+    @include media('<tablet'){
+      padding:60px 6% 38px;
+      background-image: url(../assets/bg-unblocks-product-mobile.svg);
+    }
+
+
+    .h3{
+      margin-bottom: 20px;
+    }
+    .image-with-text__image{
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+
+      img{
+        z-index: 15;
+      }
+      .diagrams{
+          .slick-slide{
+            padding-top: 0;
+            padding-bottom:15px;
+            padding-top: 15px;
+          }
+      }
+
+
+      .diagram{
+        position: absolute;
+        width: 150px;
+        @include media('<tablet'){
+          position: relative;
+          width: 100%;
+        }
+        &:after{
+          content: "";
+          height: 2px;
+          width: 100px;
+          position: absolute;
+          top: 50%;
+          background-color: $blue;
+          @include media('<tablet'){
+            display: none;
+          }
+        }
+        &__1{
+          top: 55%;
+          left: -80px;
+          text-align: right;
+          &:after{
+            left: calc(100% + 10px);
+          }
+          @include media('<pro'){
+            left: -120px;
+          }
+          @include media('<tablet'){
+            top: 0;
+            left: 0;
+            text-align: center;
+          }
+        }
+        &__2{
+          top: 20%;
+          text-align: left;
+          right: 5%;
+          @include media('<desktop'){
+            right: 3%;
+          }
+          @include media('<pro'){
+            right: -70px;
+          }
+          @include media('<tablet'){
+            top: 0;
+            right: auto;
+            text-align: center;
+          }
+
+          &:after{
+            left: calc(-100% + 40px);
+          }
+        }
+        &__3{
+          top: 60%;
+          text-align: left;
+          right: -100px;
+          @include media('<pro'){
+            right: -140px;
+          }
+          @include media('<tablet'){
+            top: 0;
+            right: auto;
+            text-align: center;
+          }
+
+          &:after{
+            left: calc(-100% + 40px);
+          }
+        }
+      }
+    }
+  }
+  &__supers{
+    background-image: url(../assets/bg-supers-hero.svg);
+    color: $green;
+    text-align: center;
+    padding: 100px 160px 180px;
+    @include media('<pro'){
+    padding: 80px 6% 100px;
+    }
+    @include media('<tablet'){
+      background-image: url(../assets/bg-supers-hero-mobile.svg);
+      padding: 50px 6% 20px;
+    }
+
+    .h3{
+      margin-bottom:50px;
+    }
+    .diagrams{
+      .slick-slide{
+        padding-bottom: 30px;
+      }
+    }
+    .image-with-text__image{
+      position: relative;
+      max-width: 750px;
+      margin: 0 auto;
+      left: 30px;
+      @include media('<pro'){
+        max-width: 400px;
+      }
+      @include media('<tablet'){
+        left: 0;
+      }
+      img{
+        z-index: 15;
+      }
+      .diagram{
+        position: absolute;
+        width: 130px;
+        @include media('<tablet'){
+          position: relative;
+          width: 100%;
+        }
+
+
+        &:after{
+          content: "";
+          height: 2px;
+          width: 120px;
+          position: absolute;
+          top: 50%;
+          background-color: $green;
+          @include media('<tablet'){
+            display: none;
+          }
+        }
+        &__1{
+          top: 30%;
+          left: -120px;
+          text-align: right;
+          &:after{
+            left: calc(100% + 10px);
+          }
+
+          @include media('<pro'){
+            left: -180px;
+          }
+          @include media('<tablet'){
+            top: 0;
+            left: 0;
+            text-align: center;
+          }
+        }
+        &__2{
+          top: 60%;
+          text-align: right;
+          left: -140px;
+
+          &:after{
+            width: 150px;
+          left: calc(100% + 10px);
+          }
+          @include media('<pro'){
+            left: -160px;
+          }
+          @include media('<tablet'){
+            top: 0;
+            left: 0;
+            text-align: center;
+          }
+        }
+        &__3{
+          top: 20%;
+          text-align: left;
+          right: -50px;
+
+          &:after{
+            left: calc(-100% + 0px);
+          }
+          @include media('<pro'){
+            right: -130px;
+          }
+          @include media('<tablet'){
+            top: 0;
+            right: auto;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+  }
+  &__accessories{
+    background-image: url(../assets/bg-acc-hero.svg);
+    color:#9bcbeb;
+    text-align: center;
+    padding: 110px 160px 100px;
+    margin-top: -40px;
+    background-size: 102% 100%;
+
+    @include media('<pro'){
+      background-size: 150% 100%;
+      background-position: left ;
+      padding: 75px 160px 100px;
+      margin-top: -30px;
+    }
+    @include media('<tablet'){
+      background-size: 150% 100%;
+      background-position: left ;
+      padding: 75px 6% 120px;
+      margin-top: 10px;
+    }
+
+    .h3{
+      margin-bottom:50px;
+    }
+    .image-with-text__image{
+      position: relative;
+      max-width: 750px;
+      margin: 0 auto;
+      //left: 50px;
+
+      img{
+        z-index: 15;
+      }
+    }
+
+    .diagrams{
+        .slick-slide{
+          padding-top: 0;
+          padding-bottom:15px;
+        }
+    }
+
+    .diagram{
+      position: absolute;
+      width: 150px;
+
+      @include media('<tablet'){
+        position: relative;
+        width: 100%;
+      }
+      &:after{
+        content: "";
+        height: 2px;
+        width: 200px;
+        position: absolute;
+        top: 50%;
+        background-color:#9bcbeb;
+        @include media('<tablet'){
+          display: none;
+        }
+      }
+      &__1{
+        top: 25%;
+        left: -90px;
+        text-align: right;
+          @include media('<pro'){
+            left: -140px;
+          }
+
+          @include media('<tablet'){
+            left: 0;
+            top: 0;
+            text-align: center;
+          }
+        &:after{
+          left: calc(100% + 10px);
+        }
+      }
+      &__2{
+        top: 55%;
+        text-align: right;
+        left: -110px;
+        @include media('<pro'){
+          left: -150px;
+        }
+
+        @include media('<tablet'){
+          left: 0;
+          top: 0;
+          text-align: center;
+        }
+
+        &:after{
+          left: calc(100% + 10px);
+        }
+      }
+      &__3{
+        top: 17%;
+        text-align: left;
+        right: -110px;
+
+        @include media('<pro'){
+          right: -120px;
+        }
+        @include media('<tablet'){
+          right: 0;
+          top: 0;
+          text-align: center;
+        }
+
+        &:after{
+          left: calc(-100% - 65px);
+        }
+      }
+    }
+
+  }
+  &__unbox{
+    background-image: url(../assets/bg-speks-inside.svg);
+    position: relative;
+    margin-top: -150px;
+    background-size: 108% 100%;
+    background-position: top left;
+    text-align: center;
+    padding: 170px 0 100px;
+    color: $green;
+    @include media('<pro'){
+      background-size: 158% 100%;
+    }
+    @include media('<tablet'){
+      background-size:120% 100%;
+      background-position: center center;
+      padding: 60px 0 20px;
+      margin-top: -50px;
+      background-image: url(../assets/bg-speks-inside-mobile.svg);
+    }
+    h3{
+      margin-bottom:50px;
+      @include media('<tablet'){
+        margin-bottom: 0px;
+      }
+    }
+  }
+  &__speksed{
+    background-image: url(../assets/bg-speks-ed.svg);
+    position: relative;
+    margin-top: -125px;
+    background-position: top left;
+    @include media('<1140px'){
+      margin-top: -170px;
+  }
+
+    @include media('<tablet'){
+      background-image: url(../assets/bg-speks-ed-mobile.svg);
+      padding-bottom: 50px;
+    }
+  }
+}
+
+.unbox{
+  text-align: center;
+  &__wrapper{
+    display: flex;
+    width: 85%;
+    margin: 50px auto 0;
+    justify-content: center;
+    align-content: center;
+    align-content: stretch;
+    @include media('<pro'){
+      width: 97%;
+    }
+    @include media('<tablet'){
+      flex-direction: column;
+      width: 90%;
+      display: none;
+
+      margin: 0px auto;
+    }
+
+    &-mobile{
+      display: none;
+      @include media('<tablet'){
+        display: block;
+
+        .slick-slide{
+          .responsive-image__wrapper{
+            max-height: 300px !important;
+            width: auto !important;
+            margin: 0 auto;
+
+          }
+
+          p{
+            display: block;
+            margin-top: 10px;
+          }
+          img{
+            max-height: 300px !important;
+            min-height: 100px;
+            width: auto !important;
+            margin: 0 auto;
+            left: 50%;
+            transform: translate(-50%);
+          }
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+
+  }
+  &__col{
+    display: flex;
+    flex-wrap: wrap;
+    p{
+      margin-top: 8px;
+    }
+
+    &-left{
+      //text-align: right;
+      justify-content: space-between;
+      .responsive-image__wrapper {
+        margin: 0  auto;
+      }
+
+      @include media('<tablet'){
+        text-align: center;
+        justify-content: space-between;
+        .responsive-image__wrapper {
+          margin: 0 auto;
+        }
+      }
+    }
+    &-right{
+      //text-align: left;
+      justify-content: flex-end;
+      padding-top: 30px;
+      .responsive-image__wrapper {
+        margin: 0 auto  ;
+      }
+      @include media('<tablet'){
+        text-align: center;
+        justify-content: space-between;
+        .responsive-image__wrapper {
+          margin: 0 auto;
+        }
+      }
+    }
+    &-center{
+      flex: 0 0 33%;
+    }
+  }
+  &__item{
+    flex: 1 0 100%;
+    &:nth-child(2){
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: center;
+  }
+  @include media('<tablet'){
+    margin-bottom: 30px;
+  }
+  }
+}
+
+
+.unblocks{
+  &__iwt{
+    background-color: #FFCF37;
+    margin-top: -200px;
+    color: white;
+    padding-left: 160px;
+    justify-content: center;
+    min-height: 650px;
+    @include media('<tablet'){
+      min-height: 0;
+      padding: 50px 6% 80%;
+      margin-top: -50px;
+      position: relative;
+    }
+    .image-with-text__text{
+      align-self: center;
+      max-width: 500px;
+      @include media('<tablet'){
+        align-self: flex-start;
+        flex: 1 0 100%;
+        font-size: 20px;
+      }
+    }
+    .image-with-text__image{
+      flex: 0 0 50%;
+      align-self: flex-end;
+      @include media('<tablet'){
+        position: absolute;
+        bottom: 50px;
+        width: 60%;
+        right: 0;
+      }
+    }
+  }
+
+&__unbox{
+  background-size: 102% 100%;
+  padding: 120px 0 100px;
+  background-position: top right;
+  position: relative;
+  z-index:11;
+  overflow: visible;
+  position: relative;
+    background-image: url(../assets/bg-unblocks-inside.svg);
+    color: $green;
+    text-align: center;
+    margin-top: -105px;
+
+    @include media('<tablet'){
+      background-image: url(../assets/bg-unblocks-inside-mobile.svg);
+      padding: 80px 0 30px;
+      margin-top: -110px;
+    }
+    .unbox__col-left{
+      justify-content: center;
+      align-items: center;
+      min-width: 280px;
+    }
+    .unbox__col{
+      flex: 0 0 30%;
+    }
+    .unbox__col-right{
+    }
+    .unbox__col-center{
+      //padding: 0 20px;
+    }
+    // .unbox__col-right{
+    //   min-width: 280px;
+    // }
+}
+
+&__magnetic{
+  background-size: 102% 100%;
+  padding: 50px 0 50px;
+  background-position: top right;
+  position: relative;
+  z-index:11;
+  overflow: visible;
+  position: relative;
+    background-image: url(../assets/bg-unblocks-magnetic.svg);
+    color: $green;
+    margin-top: -60px;
+    @include media('<tablet'){
+      padding: 50px 0 10px;
+      background-image: url(../assets/bg-unblocks-magnetic-mobile.svg);
+    }
+    h2{
+      font-size: 90px;
+      line-height: 90px;
+      @include media('<pro'){
+        font-size: 60px;
+        line-height: 60px;
+      }
+      @include media('<tablet'){
+        font-size: 20px;
+        line-height: 20px;
+      }
+    }
+    h6{
+      font-family: $sofia;
+      max-width: 70px;
+      align-self: center;
+      @include media('<tablet'){
+        max-width: 100%;
+        padding: 20px 0;
+      }
+    }
+}
+}
+
+.supers{
+  &__iwt{
+    background-color: #F9AD31;
+    margin-top: -200px;
+    color: white;
+    padding-left: 120px;
+    padding-bottom: 50px;
+    padding-top: 40px;
+    justify-content: center;
+    min-height: 650px;
+    @include media('<pro'){
+      padding: 120px 6% 120px;
+      min-height: 0;
+    }
+    @include media('<tablet'){
+    padding: 140px 0  140px 10%;
+    }
+    .image-with-text__text{
+      align-self: center;
+      max-width: 700px;
+      @include media('<pro'){
+        flex: 1 0 60%;
+      }
+      @include media('<tablet'){
+        flex: 0 0 30%;
+        max-width: 80px;
+        .h1{
+          font-size: 20px;
+          line-height: 20px;
+        }
+      }
+    }
+    .image-with-text__image{
+      flex: 0 1 50%;
+      align-self: flex-end;
+      @include media('<pro'){
+        flex: 1  0 40%;
+      }
+      @include media('<tablet'){
+        flex: 1 0 70%;
+      }
+    }
+  }
+
+  &__unbox{
+    background-size: 104% 100%;
+    padding: 150px 0 100px;
+    background-position: top right;
+    position: relative;
+    z-index:11;
+    overflow: visible;
+    position: relative;
+      background-image: url(../assets/bg-sueprs-unbox.svg);
+      color: $green;
+      text-align: center;
+      margin-top: -185px;
+      @include media('<tablet'){
+        background-image: url(../assets/bg-speks-inside-mobile.svg);
+        padding: 80px 6% 10px;
+      }
+      .unbox__col{
+        flex: 0 0 30%;
+      }
+      .unbox__col-right{
+        justify-content: center;
+        align-items: center;
+        top: -30px;
+        position: relative;
+        max-width:300px;
+        //flex: 0 0 33%;
+      }
+      .unbox__col-center{
+        padding: 0 20px;
+      }
+  }
+
+  &__magnetic{
+    background-image: url(../assets/bg-supers-magnetic.svg);
+    padding-bottom: 110px;
+    @include media('<tablet'){
+padding-bottom:10px;
+      background-image: url(../assets/bg-unblocks-magnetic-mobile.svg)
+    }
+  }
+
+
+}
+
+
+.stand{
+  &__iwt{
+    background-image: url(../assets/bg-acc-iwt.svg);
+    margin-top: -260px;
+    color: white;
+    padding-left: 120px;
+    padding-bottom: 120px;
+    padding-top: 100px;
+    justify-content: center;
+    background-size: 104% 100%;
+    //padding: 150px 0 50px;
+    background-position: top right;
+    position: relative;
+    z-index:10;
+    overflow: visible;
+    position: relative;
+    .image-with-text__text{
+      align-self: center;
+      max-width: 500px;
+    }
+    .image-with-text__image{
+      flex: 0 1 40%;
+      align-self: flex-end;
+    }
+
+  }
+}
+
+.full-width-image__acc{
+  margin-top: -110px;
+}
+
+.yotpo-wrapper{
+  text-align: center;
+  margin: 50px auto 50px auto;
+  @include media('<tablet'){
+    margin:40px auto 10px auto;
+  }
+  .main-widget{
+    width: 70%;
+    max-width: 900px;
+    margin: 0 auto;
+
+    @include media('<phone'){
+      width: 100%;
+    }
+  }
+}
+
+
+.speksed{
+  &__inner{
+    width: 88%;
+    margin: 0 auto;
+    display: flex;
+
+
+    @include media('<1140px'){
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+    @include media('<tablet'){
+      flex-direction: column;
+      padding-top:60px;
+    }
+    .full-width__video{
+      flex: 0 0 30%;
+      margin-right: 35px;
+      @include media('<1400px'){
+        flex: 0 0 35%;
+    }
+
+    @include media('<1140px'){
+      margin-bottom: 50px;
+  }
+      @include media('<tablet'){
+        flex: 0 0 100%;
+        margin: 0;
+        width: 100%;
+      }
+
+      border: 2px solid white;
+      .video-wrapper{
+        padding-bottom: 100%;
+      }
+    }
+
+  }
+  &__how-to{
+    position:relative;
+    display: flex;
+    h6{
+      color: white;
+      font-size: 20px;
+    }
+    @include media('<1400px'){
+      padding-top: 50px;
+  }
+  @include media('<1140px'){
+    flex: 0 0 100%;
+}
+
+    @include media('<tablet'){
+    position: static;
+    width: 100%;
+    padding-top: 0;
+
+  }
+  }
+  &__title{
+    position: absolute;
+    width: 320px;
+    @include media('<1400px'){
+      top: 0;
+  }
+
+    @include media('<tablet'){
+    top: 50px;
+    text-align: center;
+    width: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  }
+  &__instructions{
+    display: flex;
+    align-items: flex-end;
+    margin-right: -30px;
+    @include media('<tablet'){
+    margin:10px auto;
+    width: 78%;
+    padding-bottom: 30px;
+  }
+  .slick-slide{
+    @include media('<tablet'){
+      img{
+        margin: 0 auto;
+      }
+  }
+  }
+    .step{
+      flex: 0 0 25%;
+      padding-right: 30px;
+
+      @include media('<tablet'){
+      padding-right: 0px;
+    }
+      h6{
+        color: white;
+        font-size: 20px;
+      }
+      &:nth-child(2){
+        h6{
+          color: $green;
+          font-family: $bobby;
+        }
+      }
+
+      &:nth-child(3){
+        .image{
+          width: 200%;
+        }
+      }
+      &:nth-child(4){
+        .image{
+          display: none;
+        }
+      }
+      .image{
+        margin-bottom: 20px;
+      }
+
+    }
+  }
+
+}
+#the-show-off-stand-speks-desk-toy-stand{
+  .stand__iwt{
+    margin-top: -150px;
+    padding: 100px 6% 140px;
+      @include media('<tablet'){
+        padding: 60px 6% 70px;
+        background-size: 130% 100%;
+        background-position: right;
+      }
+  .image-with-text__text{
+    @include media('<tablet'){
+      align-self: flex-start;
+      flex: 0 0 25%;
+      .h1{font-size: 20px;
+        line-height: 20px;
+      }
+    }
+    }
+    .image-with-text__image{
+      @include media('<pro'){
+        flex: 0 1 50%;
+      }
+
+      @include media('<tablet'){
+        flex: 0 0 70%;
+      }
+    }
+  }
+}
+
+
+.accessories{
+  &__magnetic{
+    background-image: url(../assets/bg-stand-magnetic.svg);
+    margin-top: -140px;
+    color: $purple;
+    padding-bottom: 90px;
+    @include media('<tablet'){
+      background-size: 300% 100%;
+      background-position: left;
+      padding-top: 100px;
+      padding-bottom: 50px;
+    }
+    h6{
+      max-width: 90px;
+      margin-top: 10px;
+      @include media('<tablet'){
+        margin: 0 auto;
+      }
+    }
+    h2{
+      font-size: 60px;
+      line-height: 60px;
+      @include media('<tablet'){
+        font-size: 30px;
+        line-height: 30px;
+      }
+    }
+    .slick-slide{
+      padding: 20px 0;
+    }
+    .product-grid__product{
+      >div{
+        margin: 0;
+      }
+    }
+  }
+
+}

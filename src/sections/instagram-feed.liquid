@@ -1,0 +1,45 @@
+<section class="ig-feed">
+  <div class="ig-feed__inner gutter">
+  <div class="ig-feed__text">
+    {% if section.settings.title != blank %}
+      <h4>{{ section.settings.title | escape }}</h4>
+    {% endif %}
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a class="btn btn__blue" href="{{ section.settings.button_link }}">
+        {{ section.settings.button_label | escape }}
+      </a>
+    {% endif %}
+  </div>
+  <div id="insta-feed"></div>
+</div>
+</section>
+
+{% schema %}
+  {
+    "name": "Feed",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Instagram Headline"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Instagram Feed",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

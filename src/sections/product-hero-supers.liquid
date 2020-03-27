@@ -1,0 +1,57 @@
+
+
+<section class="product-hero product-hero__supers">
+  <div class="image-with-text__text">
+    {% if section.settings.title != blank %}
+      <h2 class="h3">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+  </div>
+
+  <div class="image-with-text__image">
+    {% if section.settings.image != blank %}
+      {% include 'responsive-image' with
+        image: section.settings.image,
+        max_width:500,
+        max_height: 500
+      %}
+    {% else %}
+      <!-- {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }} -->
+    {% endif %}
+    <div class="diagrams speks-slider speks-slider__green">
+    <div class="diagram diagram__1">
+      <h6>each magnet: 33mm diameter</h6>
+    </div>
+    <div class="diagram diagram__2">
+      <h6>super strong electroplated nickel coating</h6>
+    </div>
+    <div class="diagram diagram__3">
+      <h6>super strong magnets</h6>
+    </div>
+  </div>
+</div>
+</section>
+
+{% schema %}
+  {
+    "name": "Speks Product Hero",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Product Hero"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Speks Product Hero",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

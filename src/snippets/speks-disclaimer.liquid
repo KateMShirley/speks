@@ -1,0 +1,11 @@
+<!-- /snippets/disclaimer.liquid -->
+<div id="speks-disclaimer" >
+    <div class="text-disclaimer ">
+        {% assign img_name = "adult_safe" | append:'.png' %}
+        <div class="disclaimer-image ">
+            <div><img src="{{ img_name | asset_img_url: '42x', scale: 2 | split:'?' | first}}" alt="" align=left style="width:20px"></div>
+            <div><b><span style="color:#ff6b00;">WARNING:</span> Keep Away From All Children!</b></div>
+        </div>
+        <div>Do not put near or in nose or mouth. Swallowed magnets can pinch and stick together across intestines causing serious injury or death. Seek immediate medical attention if magnets are swallowed or ingested.</div>
+    </div>
+</div>

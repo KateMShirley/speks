@@ -1,0 +1,119 @@
+<section class="wholesale wholesale__form">
+  <div class="form__inner gutter">
+    <div class="form__image">
+      {% if section.settings.image != blank %}
+        {% include 'responsive-image' with
+          image: section.settings.image,
+          max_width:800,
+          max_height: 800
+        %}
+
+        {% endif %}
+    </div>
+
+    <div class="form__form">
+      <h5>{{section.settings.text}}</h5>
+  {% form 'contact' %}
+
+    <label for="ContactFormFirstName">First Name</label>
+    <input type="text"
+      name="contact[firstname]"
+      id="ContactFormFirstName"
+      placeholder="*First Name" required>
+      <label for="ContactFormLastName">Last Name</label>
+      <input type="text"
+        name="contact[lastname]"
+        id="ContactFormLastName"
+        placeholder="*Last Name" required>
+    <label for="ContactFormCompanyName">Company Name</label>
+    <input type="text"
+      name="contact[companyname]"
+      id="ContactFormCompanyName"
+      placeholder="*Company Name" required>
+
+    <label for="ContactFormEmail">{{ 'contact.form.email' | t }}</label>
+    <input type="email"
+      name="contact[email]"
+      id="ContactFormEmail"
+      placeholder="* Email Address"
+      value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+      spellcheck="false"
+      autocomplete="off"
+      autocapitalize="off">
+
+
+      <label for="ContactFormCompanyWebsite">Company Website</label>
+      <input type="text"
+        name="contact[companywebsite]"
+        id="ContactFormCompanyWebsite"
+        placeholder="*Company Website" required>
+
+    <label for="ContactFormPhone">{{ 'contact.form.phone' | t }}</label>
+    <input type="tel"
+      name="contact[phone]"
+      id="ContactFormPhone"
+      placeholder="{{ 'contact.form.phone' | t }}"
+      value="{% if form[phone] %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+      pattern="[0-9\-]*">
+
+      <label for="ContactFormCountryName">Country Name</label>
+      <input type="text"
+        name="contact[countryname]"
+        id="ContactFormCountryName"
+        placeholder="Country">
+
+
+        <label for="ContactFormCityName">City Name</label>
+        <input type="text"
+          name="contact[cityname]"
+          id="ContactFormCityName"
+          placeholder="City">
+
+    <label for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
+    <textarea rows="10"
+      name="contact[body]"
+      id="ContactFormMessage"
+      placeholder="Comment">
+      {%- if form.body -%}
+        {{- form.body -}}
+      {%- endif -%}
+    </textarea>
+
+    <input type="submit" class="btn btn__blue" value="submit">
+
+
+    {% if form.posted_successfully? %}
+      <h5 class="form-success">
+        {{ 'contact.form.post_success' | t }}
+      <h5>
+    {% endif %}
+
+    {{ form.errors | default_errors }}
+  {% endform %}
+</div>
+</div>
+</section>
+
+{% schema %}
+  {
+    "name": "Wholesale Form",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Form Headline"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Wholesale Form",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}

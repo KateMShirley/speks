@@ -1,0 +1,190 @@
+.wholesale{
+  &__hero{
+    background-image: url(../assets/bg-wholesale-hero.svg);
+    background-size: 102% 100%;
+    background-position: bottom;
+    position: relative;
+    padding: 70px 0 150px;
+    color: white;
+    text-align: center;
+    z-index: 10;
+    @include media('<=pro'){
+      padding: 70px 0 100px;
+    }
+    @include media('<tablet'){
+      background-image: url(../assets/bg-wholesale-hero-mobile.svg);
+      padding: 50px 0 60px;
+    }
+
+    h1{
+      margin: 0 auto;
+      max-width: 1200px;
+      min-width: 1140px;
+      @include media('<desktop'){
+        min-width: 949px;
+      }
+      @include media('<=pro'){
+        min-width: 0;
+      }
+      @include media('<tablet'){
+        font-size: 24px;
+        line-height: 24px;
+        max-width: 250px;
+      }
+
+    }
+  }
+  &__form{
+    background-image: url(../assets/bg-wholesale-form.svg);
+    background-size: 108% 100%;
+    background-position: bottom;
+    position: relative;
+    padding: 170px 0 50px;
+    margin-top: -115px;
+    z-index: 9;
+    @include media('<pro'){
+      background-size: 168% 100%;
+      padding: 170px 0 75px;
+    }
+    @include media('<tablet'){
+      padding: 130px 0 55px;
+      background-size: 258% 100%;
+    }
+
+    .form{
+      &__inner{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        color: $blue;
+        >div{
+          flex: 0 0 47%;
+          @include media('<pro'){
+            flex: 0 0 100%;
+            div{
+              max-width: 500px!important;
+              height: auto !important;
+               margin: 0 auto 50px;
+            }
+          }
+          @include media('<tablet'){
+            div{
+              max-width:250px!important;
+              height: auto !important;
+               margin: 0 auto 30px;
+            }
+          }
+
+        }
+        h5{
+          margin-bottom: 27px;
+          @include media('<pro'){
+            text-align: center;
+          }
+        }
+      }
+
+      &__form{
+        width: 100%;
+        form{
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          @include media('<pro'){
+            max-width: 600px;
+            margin: 0 auto;
+          }
+        }
+        label{
+          display: none;
+        }
+        input:not([type="submit"]), textarea{
+          width: 100%;
+          margin-bottom: 15px;
+          padding: 13px 17px;
+          border: 1px solid #979797;
+          font-size: 14px;
+          font-family: $sofia;
+
+          letter-spacing: .39px;
+
+        }
+        input[type="submit"]{
+          margin: 10px auto;
+        }
+        #ContactFormFirstName, #ContactFormLastName{
+          width: 49%;
+          display: inline-block;
+        }
+        #ContactFormLastName{
+          margin: 0 0 15px auto ;
+        }
+        #ContactFormMessage{
+          width: 100%;
+          padding: 6px;
+        }
+      }
+    }
+  }
+
+  &__logos{
+    background-image: url(../assets/bg-wholesal-logos.svg);
+    background-size: 102% 100%;
+    background-position: bottom;
+    position: relative;
+    padding: 270px 0 200px;
+    margin-top: -200px;
+    z-index: 8;
+    @include media('<tablet'){
+      background-image: url(../assets/bg-wholesal-logos-mobile.svg);
+      padding: 190px 0 70px;
+    }
+
+    .logos{
+      &__inner{
+        display: flex;
+        @include media('<tablet'){
+          display: block;
+        }
+        justify-content: space-between;
+        align-items: center;
+      }
+      &__logo{
+        flex: 0 1 205px;
+        @include media('<tablet'){
+          width: 100%;
+          padding-bottom: 20px;
+        }
+
+        &:nth-child(1), &:nth-child(2){
+          max-width: 75px;
+          @include media('<tablet'){
+        max-width: 100%;
+          }
+        }
+
+        &:nth-child(5){
+          flex: 0 1 285px;
+          @include media('<tablet'){
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+#speks-wholesale-opportunities-bulk-cheap-wholesale-magnetic-balls{
+  .se-pre-con{
+    display: none;
+  }
+  .about__press{
+    z-index: 7;
+    padding-top: 200px;
+    margin-top: -220px;
+    @include media('<tablet'){
+      padding-top: 220px;
+    }
+  }
+}

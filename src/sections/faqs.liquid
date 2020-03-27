@@ -1,0 +1,198 @@
+<section class="faq__faqs">
+<div class="js-tabs">
+  <ul class="js-tablist">
+
+  {% if section.settings.cat_1 %}
+   <li class="js-tablist__item">
+      <a href="#{{ section.settings.cat_1 | handle }}" id="labe{{ section.settings.cat_1 | handle }}" class="js-tablist__link">{{ section.settings.cat_1 | downcase }}</a>
+    </li>
+  {% endif %}
+  {% if section.settings.cat_2 %}
+   <li class="js-tablist__item">
+     <a href="#{{ section.settings.cat_2 | handle }}" id="label_{{ section.settings.cat_2 | handle }}" class="js-tablist__link">{{ section.settings.cat_2 | downcase }}</a>
+  </li>
+{% endif %}
+{% if section.settings.cat_3 %}
+  <li class="js-tablist__item">
+    <a href="#{{ section.settings.cat_3 | handle }}" id="label_{{ section.settings.cat_3 | handle }}" class="js-tablist__link">{{ section.settings.cat_3 | downcase }}</a>
+ </li>
+{% endif %}
+ {% if section.settings.cat_4 %}
+ <li class="js-tablist__item">
+   <a href="#{{ section.settings.cat_4 | handle }}" id="label_{{ section.settings.cat_4 | handle }}" class="js-tablist__link">{{ section.settings.cat_4 | downcase }}</a>
+</li>
+{% endif %}
+{% if section.settings.cat_5 != blank %}
+<li class="js-tablist__item">
+  <a href="#{{ section.settings.cat_5 | handle }}" id="label_{{ section.settings.cat_5 | handle }}" class="js-tablist__link">{{ section.settings.cat_5 | downcase }}</a>
+</li>
+{% endif %}
+{% if section.settings.cat_6 != blank %}
+<li class="js-tablist__item">
+  <a href="#{{ section.settings.cat_6 | handle }}" id="label_{{ section.settings.cat_6 | handle }}" class="js-tablist__link">{{ section.settings.cat_6 | downcase }}</a>
+</li>
+{% endif %}
+  </ul>
+ <div id="{{ section.settings.cat_1 | handle }}" class="js-tabcontent">
+       <div class="js-accordion" data-accordion-multiselectable="none" data-accordion-prefix-classes="animated-accordion">
+    {% for block in section.blocks %}
+    {% if block.settings.faq_cat == "1" %}
+     <div class="js-accordion__panel" {% if forloop.first == true %} data-accordion-opened="true" {% endif %}>
+       <h2 class=" h4 js-accordion__header">{{ block.settings.title }}</h2>
+       <p>{{ block.settings.answer }}</p>
+     </div>
+     {% endif %}
+    {% endfor %}
+    </div>
+ </div>
+ <div id="{{ section.settings.cat_2 | handle }}" class="js-tabcontent">
+   <div class="js-accordion" data-accordion-multiselectable="none" data-accordion-prefix-classes="animated-accordion">
+      {% for block in section.blocks %}
+      {% if block.settings.faq_cat == "2" %}
+       <div class="js-accordion__panel" {% if forloop.index0 == 0 %} data-accordion-opened="true" {% endif %}>
+         <h2 class="h4 js-accordion__header">{{ block.settings.title }}</h2>
+         <p>{{ block.settings.answer }}</p>
+       </div>
+       {% endif %}
+      {% endfor %}
+      </div>
+ </div>
+ <div id="{{ section.settings.cat_3 | handle }}" class="js-tabcontent">
+   <div class="js-accordion" data-accordion-multiselectable="none" data-accordion-prefix-classes="animated-accordion">
+      {% for block in section.blocks %}
+      {% if block.settings.faq_cat == "3" %}
+       <div class="js-accordion__panel" {% if forloop.index0 == 0 %} data-accordion-opened="true" {% endif %}>
+         <h2 class="h4 js-accordion__header">{{ block.settings.title }}</h2>
+         <p>{{ block.settings.answer }}</p>
+       </div>
+       {% endif %}
+      {% endfor %}
+      </div>
+ </div>
+ <div id="{{ section.settings.cat_4 | handle }}" class="js-tabcontent">
+   <div class="js-accordion" data-accordion-multiselectable="none" data-accordion-prefix-classes="animated-accordion">
+      {% for block in section.blocks %}
+      {% if block.settings.faq_cat == "4" %}
+       <div class="js-accordion__panel" {% if forloop.index0 == 0 %} data-accordion-opened="true" {% endif %}>
+         <h2 class="h4 js-accordion__header">{{ block.settings.title }}</h2>
+         <p>{{ block.settings.answer }}</p>
+       </div>
+       {% endif %}
+      {% endfor %}
+      </div>
+ </div>
+ <div id="{{ section.settings.cat_5 | handle }}" class="js-tabcontent">
+   <div class="js-accordion" data-accordion-multiselectable="none" data-accordion-prefix-classes="animated-accordion">
+      {% for block in section.blocks %}
+      {% if block.settings.faq_cat == "5" %}
+       <div class="js-accordion__panel" {% if forloop.index0 == 0 %} data-accordion-opened="true" {% endif %}>
+         <h2 class="h4 js-accordion__header">{{ block.settings.title }}</h2>
+         <p>{{ block.settings.answer }}</p>
+       </div>
+       {% endif %}
+      {% endfor %}
+      </div>
+ </div>
+ <div id="{{ section.settings.cat_6 | handle }}" class="js-tabcontent">
+   <div class="js-accordion" data-accordion-multiselectable="none" data-accordion-prefix-classes="animated-accordion">
+      {% for block in section.blocks %}
+      {% if block.settings.faq_cat == "6" %}
+       <div class="js-accordion__panel" {% if forloop.index0 == 0 %} data-accordion-opened="true" {% endif %}>
+         <h2 class="h4 js-accordion__header">{{ block.settings.title }}</h2>
+         <p>{{ block.settings.answer }}</p>
+       </div>
+       {% endif %}
+      {% endfor %}
+      </div>
+ </div>
+</div>
+</section>
+
+{% schema %}
+  {
+    "name": "FAQs",
+    "settings": [
+      {
+        "type": "text",
+        "id": "cat_1",
+        "label": "FAQ Category 1"
+      },
+      {
+        "type": "text",
+        "id": "cat_2",
+        "label": "FAQ Category 2"
+      },
+      {
+        "type": "text",
+        "id": "cat_3",
+        "label": "FAQ Category 3"
+      },
+      {
+        "type": "text",
+        "id": "cat_4",
+        "label": "FAQ Category 4"
+      },
+
+      {
+        "type": "text",
+        "id": "cat_5",
+        "label": "FAQ Category 5"
+      },
+      {
+        "type": "text",
+        "id": "cat_6",
+        "label": "FAQ Category 6"
+      }
+  ],
+    "blocks": [
+
+      {
+        "type": "question",
+        "name": "QnA",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Question"
+          },
+          {
+            "type": "richtext",
+            "id": "answer",
+            "label": "Answer"
+          },
+          {
+           "type":      "select",
+           "id":        "faq_cat",
+           "label":     "Which FAQ Category?",
+           "options": [
+             {
+               "value": "1",
+               "label": "Category 1"
+             },
+             {
+               "value": "2",
+               "label": "Category 2"
+             },
+             {
+               "value": "3",
+               "label": "Category 3"
+             },
+             {
+               "value": "4",
+               "label": "Category 4"
+             },
+             {
+               "value": "5",
+               "label": "Category 5"
+             },
+             {
+               "value": "6",
+               "label": "Category 6"
+             }
+           ]
+         }
+        ]
+      }
+    ]
+  }
+{% endschema %}

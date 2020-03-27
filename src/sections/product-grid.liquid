@@ -1,0 +1,209 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add the "Image with text" section in the theme editor.
+
+  Theme Store required settings
+  - Image
+  - Heading: title of the block
+  - Text: description of the block
+
+  Theme Store optional settings
+  - Button label: label associated with the button
+  - Button link: link of the button
+{%- endcomment -%}
+
+<section class="product-grid product-grid__perfect">
+  <div class=" product-grid__inner">
+
+  <div class="gutter-left image-with-text__text">
+    {% if section.settings.title != blank %}
+      <h2 class="h1">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+    {% if section.settings.text != blank %}
+      <div>{{ section.settings.text }}</div>
+    {% endif %}
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a class="btn btn__blue" href="{{ section.settings.button_link }}">
+        {{ section.settings.button_label | escape }}
+      </a>
+    {% endif %}
+  </div>
+  <div class="product-grid__grid speks-slider speks-slider__blue">
+    <div class="product-grid__product">
+      {% if section.settings.image_1 != blank %}
+        {% include 'responsive-image' with
+          image: section.settings.image_1,
+          max_width: 800,
+          max_height: 800
+        %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+      {% if section.settings.label_1 != blank %}
+      <h6>{{ section.settings.label_1 }}</h6>
+      {% endif %}
+    </div>
+    <div class="product-grid__product">
+      {% if section.settings.image_2 != blank %}
+        {% include 'responsive-image' with
+          image: section.settings.image_2,
+          max_width: 800,
+          max_height: 800
+        %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+      {% if section.settings.label_2 != blank %}
+      <h6>{{ section.settings.label_2 }}</h6>
+      {% endif %}
+    </div>
+    <div class="product-grid__product">
+      {% if section.settings.image_3 != blank %}
+        {% include 'responsive-image' with
+          image: section.settings.image_3,
+          max_width: 800,
+          max_height: 800
+        %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+      {% if section.settings.label_3 != blank %}
+      <h6>{{ section.settings.label_3 }}</h6>
+      {% endif %}
+    </div>
+    <div class="product-grid__product">
+      {% if section.settings.image_4 != blank %}
+        {% include 'responsive-image' with
+          image: section.settings.image_4,
+          max_width: 800,
+          max_height: 800
+        %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+      {% if section.settings.label_4 != blank %}
+      <h6>{{ section.settings.label_4 }}</h6>
+      {% endif %}
+    </div>
+    <div class="product-grid__product">
+      {% if section.settings.image_5 != blank %}
+        {% include 'responsive-image' with
+          image: section.settings.image_5,
+          max_width: 800,
+          max_height: 800
+        %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+      {% if section.settings.label_5 != blank %}
+      <h6>{{ section.settings.label_5 }}</h6>
+      {% endif %}
+    </div>
+    <div class="product-grid__product">
+      {% if section.settings.image_6 != blank %}
+        {% include 'responsive-image' with
+          image: section.settings.image_6,
+          max_width: 800,
+          max_height: 800
+        %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+      {% if section.settings.label_6 != blank %}
+      <h6>{{ section.settings.label_6 }}</h6>
+      {% endif %}
+    </div>
+  </div>
+  </div>
+
+</section>
+
+{% schema %}
+  {
+    "name": "Product Grid",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Image 1"
+      },
+      {
+      "type": "text",
+      "id": "label_1",
+      "label": "Label 1"
+    },
+      {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+    "type": "text",
+    "id": "label_2",
+    "label": "Label 2"
+  },
+    {
+    "type": "image_picker",
+    "id": "image_3",
+    "label": "Image 3"
+  },
+  {
+  "type": "text",
+  "id": "label_3",
+  "label": "Label 3"
+  },
+  {
+  "type": "image_picker",
+  "id": "image_4",
+  "label": "Image 4"
+  },
+  {
+  "type": "text",
+  "id": "label_4",
+  "label": "Label 4"
+  },
+  {
+  "type": "image_picker",
+  "id": "image_5",
+  "label": "Image 5"
+  },
+  {
+  "type": "text",
+  "id": "label_5",
+  "label": "Label 5"
+  },
+  {
+  "type": "image_picker",
+  "id": "image_6",
+  "label": "Image 6"
+  },
+  {
+  "type": "text",
+  "id": "label_6",
+  "label": "Label 6"
+  }
+    ],
+    "presets": [
+      {
+        "name": "Product Grid",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

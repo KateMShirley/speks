@@ -1,0 +1,72 @@
+html {
+  background-color: $color-body;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+}
+body{
+  max-width: 1700px;
+  margin: 0 auto;
+  position: relative;
+}
+body{
+main{
+  padding-top: 75px;
+  position: relative;
+  @include media('<tablet'){
+    padding-top: 90px;
+  }
+}
+}
+.full-screen{
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6{
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+}
+.gutter{
+  width: 88%;
+  margin: 0 auto;
+}
+.gutter-left{
+  padding-left:6%;
+}
+.gutter-right{
+  padding-right: 6%;
+}
+body#challenge{
+  main{
+    background-color: $lime;margin-bottom: 30px;}
+}
+.shopify-challenge__container{
+  padding: 100px;
+  max-width: 800px;
+  min-height: 50vh;
+  background-color: $lime;
+  p{
+    color: $green;
+    font-size: 30px;
+    font-weight: $bold;
+    text-transform: lowercase;
+    margin-bottom: 50px;
+  }
+  .btn{
+    margin-top: 30px;
+  }
+}

@@ -1,0 +1,28 @@
+
+
+<section class="full-width-image full-width-image__acc">
+  {% if section.settings.image != blank %}
+  <div class="lazyload" data-bgset="{% include 'responsive-bg-image', image: section.settings.image %}"></div>
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  {% endif %}
+</section>
+
+{% schema %}
+  {
+    "name": "Full-width Image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Full-width Image",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

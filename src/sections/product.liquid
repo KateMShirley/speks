@@ -1,0 +1,930 @@
+{% include 'linked-options' %}
+<div id="product-detail" class="product-template__container page-width page-width-padding" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
+    {% comment %}
+        Get first variant, or deep linked one
+        Set Breakpoints
+    {% endcomment %}
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {%- assign product_image_zoom_size = '1024x1024' -%}
+    {%- assign product_image_scale = '2' -%}
+    {%- assign enable_zoom = section.settings.enable_zoom -%}
+
+    {% case section.settings.image_size %}
+        {% when 'small' %}
+        {%- assign product_image_width = 'medium--one-third' -%}
+        {%- assign product_description_width = 'medium--two-thirds' -%}
+        {%- assign product_thumbnail_width = 'medium--one-third' -%}
+        {%- assign height = 345 -%}
+        {% when 'medium' %}
+        {%- assign product_image_width = 'medium-up--one-half' -%}
+        {%- assign product_description_width = 'medium-up--one-half' -%}
+        {%- assign product_thumbnail_width = 'medium-up--one-quarter' -%}
+        {%- assign height = 530 -%}
+        {% when 'large' %}
+        {%- assign product_image_width = 'large-up--one-third' -%}
+        {%- assign product_description_width = 'large-up--two-thirds' -%}
+        {%- assign product_thumbnail_width = 'large-up--one-fifth' -%}
+        {%- assign height = 720 -%}
+        {% when 'full' %}
+        {%- assign product_image_width = '' -%}
+        {%- assign product_description_width = '' -%}
+        {%- assign product_thumbnail_width = 'large-up--one-eighth' -%}
+        {%- assign height = 1090 -%}
+        {%- assign enable_zoom = false -%}
+    {% endcase %}
+
+
+    {% capture product_video %}
+        <div class="video-wrapper">
+
+            {% if product.title contains 'Super' %}
+                {% if section.settings.video_url_super.type == "youtube" %}
+                <iframe class="mobile-video-player" src="https://www.youtube.com/embed/{{ section.settings.video_url_super.id }}?rel=0&amp;showinfo=0&autoplay=0&enablejsapi=1" width="850" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                {% endif %}
+                {% if section.settings.video_url_super.type == "vimeo" %}
+                <iframe src="https://www.youtube.com/embed/{{ section.settings.video_url_super.id }}?rel=0&amp;showinfo=0&autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_url_super.id }}" width="850" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                {% endif %}
+
+            {% elsif product.title contains 'Fleks' %}
+                {% if section.settings.video_url_blocks.type == "youtube" %}
+                <iframe class="mobile-video-player" src="https://www.youtube.com/embed/{{ section.settings.video_url_fleks.id }}?rel=0&amp;showinfo=0&autoplay=0&enablejsapi=1" width="850" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                {% endif %}
+                {% if section.settings.video_url_blocks.type == "vimeo" %}
+                <iframe src="//player.vimeo.com/video/{{ section.settings.video_url_fleks.id }}?color={{ settings.color_secondary | remove: "#" }}&byline=0&portrait=0&badge=0" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                {% endif %}
+
+            {% elsif product.title contains 'Unblocks' %}
+                {% if section.settings.video_url_blocks.type == "youtube" %}
+                <iframe class="mobile-video-player" src="https://www.youtube.com/embed/{{ section.settings.video_url_unblocks.id }}?rel=0&amp;showinfo=0&autoplay=0&enablejsapi=1" width="850" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                {% endif %}
+                {% if section.settings.video_url_blocks.type == "vimeo" %}
+                <iframe src="//player.vimeo.com/video/{{ section.settings.video_url_unblocks.id }}?color={{ settings.color_secondary | remove: "#" }}&byline=0&portrait=0&badge=0" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                {% endif %}
+
+          {% comment %}  {% elsif product.title contains 'Blocks' %}
+                {% if section.settings.video_url_blocks.type == "youtube" %}
+                <iframe class="mobile-video-player" src="https://www.youtube.com/embed/{{ section.settings.video_url_blocks.id }}?rel=0&amp;showinfo=0&autoplay=0&enablejsapi=1" width="850" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                {% endif %}
+                {% if section.settings.video_url_blocks.type == "vimeo" %}
+                <iframe src="//player.vimeo.com/video/{{ section.settings.video_url_blocks.id }}?color={{ settings.color_secondary | remove: "#" }}&byline=0&portrait=0&badge=0" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                {% endif %}
+
+            {% elsif product.title == 'Blocks M-Series' %}
+                {% if section.settings.video_url_blocks_m_series.type == "youtube" %}
+                <iframe class="mobile-video-player" src="https://www.youtube.com/embed/{{ section.settings.video_url_blocks_m_series.id }}?rel=0&amp;showinfo=0&autoplay=0&enablejsapi=1" width="850" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                {% endif %}
+                {% if section.settings.video_url_blocks_m_series.type == "vimeo" %}
+                <iframe src="//player.vimeo.com/video/{{ section.settings.video_url_blocks_m_series.id }}?color={{ settings.color_secondary | remove: "#" }}&byline=0&portrait=0&badge=0" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                {% endif %}{% endcomment %}
+
+            {% elsif product.title contains 'Speks'  %}
+                {% if section.settings.video_url_speks.type == "youtube" %}
+                <iframe class="mobile-video-player" src="https://www.youtube.com/embed/{{ section.settings.video_url_speks.id }}?rel=0&amp;showinfo=0&autoplay=0&enablejsapi=1" width="850" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                {% endif %}
+                {% if section.settings.video_url_speks.type == "vimeo" %}
+                <iframe src="//player.vimeo.com/video/{{ section.settings.video_url_speks.id }}?color={{ settings.color_secondary | remove: "#" }}&byline=0&portrait=0&badge=0" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endcapture %}
+
+    {% capture product_title %}
+        <div class='product-detail-header'>
+
+            {% comment %}
+            For Speks 2.5mm Magnetic balls title has variant 1
+            Rest of products have variant 2
+            {% endcomment %}
+            <h1 class="product-single__title">{{ product.title }}</h1>
+
+        </div>
+    {% endcapture %}
+
+    {% capture product_price %}
+        <span class="product-single__price product-single__price-{{ section.id }}{% unless current_variant.available %} product-price--sold-out{% endunless %}">
+            {% if current_variant.compare_at_price > current_variant.price %}
+            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+            <s id="ComparePrice-{{ section.id }}">{{ current_variant.compare_at_price | money }}</s>
+            <span class="product-price__price product-price__price-{{ section.id }} product-price__sale product-price__sale--single">
+                <span id="ProductPrice-{{ section.id }}">
+                    {{ current_variant.price | money }}
+                </span>
+                <span class="product-price__sale-label product-price__sale-label-{{ section.id }}">{{ 'products.product.on_sale' | t }}</span>
+            </span>
+            {% else %}
+            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+            <s id="ComparePrice-{{ section.id }}" class="hide">{{ current_variant.compare_at_price | money }}</s>
+            <span class="product-price__price product-price__price-{{ section.id }}">
+                <span id="ProductPrice-{{ section.id }}">
+                    {{ current_variant.price | money }}
+                </span>
+                <span class="product-price__sale-label product-price__sale-label-{{ section.id }} hide">{{ 'products.product.on_sale' | t }}</span>
+            </span>
+            {% endif %}
+        </span>
+    {% endcapture %}
+
+
+
+    <div class="grid product-single{% if section.settings.enable_payment_button %} product-single--{{ section.settings.image_size }}-image{% endif %}">
+
+        {% comment %} Images (carousel) for mobile {% endcomment %}
+        <div class="grid__item product-single__photos medium-up--hide {{ product_image_width }}">
+
+            {%- assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image -%}
+
+            {% comment %}
+            First or Featured image
+            No featured image for products without variants
+            {% endcomment %}
+            {% for image in product.images %}
+                {% capture img_id %}FeaturedImage-{{ section.id }}-{{ image.id }}{% endcapture %}
+                {% capture img_class %}product-featured-img{% endcapture %}
+                {% capture zoom_img_id %}FeaturedImageZoom-{{ section.id }}-{{ image.id }}{% endcapture %}
+                {% capture img_wrapper_id %}{{ zoom_img_id }}-wrapper{% endcapture %}
+                {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <div class="featured_image product-single__photo--flex-wrapper {% unless featured_image == image %} hide{% endunless %}" data-image-id="{{ image.id }}">
+
+                <div class="product-single__photo--flex">
+                    {% include 'image-style' with small_style: true, width: height, height: height, wrapper_id: img_wrapper_id, img_id: img_id %}
+                    <div id="{{ img_wrapper_id }}" class="product-single__photo-wrapper js">
+                        <div id="{{ zoom_img_id }}" style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;" class="product-single__photo">
+                            <img id="{{ img_id }}" class="feature-row__image {{ img_class }} {% unless featured_image == image %}{% endunless %}" data-lazy="{{ image | img_url: '300x300' }}" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ image.aspect_ratio }}" data-sizes="auto" alt="{{ image.alt | escape }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- {% comment %} Video in carousel for mobile only {% endcomment %}
+            {% if product.title contains 'speks' or product.title contains 'Speks 1000' or product.title contains 'Speks Double' or product.title contains 'Super' or product.title contains 'Fleks' or product.title contains 'Unblocks' %}
+                <div class="carousel-video wrapper">
+                    <div class="grid">
+                        <div class="grid__item one-whole">
+                            {{ product_video }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %} -->
+
+
+            {% comment %} Next 2 images - mobile only {% endcomment %}
+            {% for image in product.images %}
+            {% for variant in image.variants %}
+              {% assign variant_title = variant.title | downcase %}
+            {% endfor %}
+            {% unless image.attached_to_variant? %}
+
+                {% capture img_id %}SupplentalImage-{{ section.id }}-{{ image.id }}{% endcapture %}
+                {% capture img_class %}product-supplemental-img{% endcapture %}
+                {% capture zoom_img_id %}SupplementalImageZoom-{{ section.id }}-{{ image.id }}{% endcapture %}
+                {% capture img_wrapper_id %}{{ zoom_img_id }}-wrapper{% endcapture %}
+                {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                {% capture product_single %}{{product.title}}{% endcapture %}
+                {% capture product_var1 %}{{current_variant.option2 | downcase }}{% endcapture %}
+                {% capture product_var2 %}{{current_variant.option3 | split: " " | first | downcase }}{% endcapture %}
+                {% capture product_var1_var2 %}{{product.title}} {{current_variant.option1}} {{current_variant.option2}}{% endcapture %}
+                {% assign image_tag = image.alt | split: ' |' %}
+                {% assign image_tag_first = image_tag | first | downcase %}
+                {% assign image_tag_var = image_tag_first | split: ' balls ' %}
+                {% assign image_tag_var1 = image_tag_var | last | downcase %}
+                {% assign image_tag_var2 = image_tag_first | split: ' - ' %}
+                {% assign image_tag_var22 = image_tag_var2 | first | downcase %}
+                {% assign image_tag_var23 = image_tag_var22 | split: 'speks ' | last | downcase %}
+
+                {% if product.title == 'Building Bars' or product.title == 'Gift Box' or product.title == 'Pack ‘Em Pouch' %}
+                {% assign item_tag = product_single | downcase %}
+                {% elsif product.title == 'Super 5 - 33mm Magnetic Balls' %}
+                {% assign item_tag = product_var1_var2 | downcase %}
+                {% else %}
+                {% assign is_variant = image.variants.title %}
+                {% assign item_tag = product_var1 | downcase %}
+                {% endif %}
+
+
+
+                {% assign balls_tag = image.alt | split: 'Balls ' | last | downcase %}
+                {% assign stand_tag = image.alt | split: 'Stand ' | last | downcase %}
+                {% assign current_title = current_variant.title | downcase %}
+                {% assign stand_title = current_title | split: ' / ' | join | downcase%}
+
+
+            {% if product.title contains "Speks" %}
+
+            <div class="medium-up--hide supplemental_image product-single__photo--flex-wrapper {% unless product_var1 == image_tag_var1 and product_var2 == image_tag_var23 %} hide{% endunless %}" data-image-alt="{{ image.alt }}" data-image-id="{{ image.id }}">
+                <div class="product-single__photo--flex">
+                    {% include 'image-style' with small_style: true, width: height, height: height, wrapper_id: img_wrapper_id, img_id: img_id %}
+                    <div id="{{ img_wrapper_id }}" class="product-single__photo-wrapper js">
+                        <div class="product-single__photo">
+                            <img id="" class="" data-lazy="{{ image.src | img_url: '600x600' }}" data-src="{{ image.src }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ image.aspect_ratio }}" data-sizes="auto" alt="{{ image.alt | escape }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+          {% elsif  product.title contains "supers" %}
+
+            <div class="medium-up--hide supplemental_image product-single__photo--flex-wrapper {% unless balls_tag == current_title %} hide{% endunless %}" data-image-alt="{{ image.alt }}" data-image-id="{{ image.id }}">
+                <div class="product-single__photo--flex">
+                    {% include 'image-style' with small_style: true, width: height, height: height, wrapper_id: img_wrapper_id, img_id: img_id %}
+                    <div id="{{ img_wrapper_id }}" class="product-single__photo-wrapper js">
+                        <div class="product-single__photo">
+                            <img id="" class="" data-lazy="{{ image.src | img_url: '600x600' }}" data-src="{{ image.src }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ image.aspect_ratio }}" data-sizes="auto" alt="{{ image.alt | escape }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% elsif  product.title contains "Stand" %}
+            <div class="medium-up--hide supplemental_image product-single__photo--flex-wrapper {% unless stand_tag == stand_title %} hide{% endunless %}" data-image-alt="{{ image.alt }}" data-image-id="{{ image.id }}">
+                <div class="product-single__photo--flex">
+                    {% include 'image-style' with small_style: true, width: height, height: height, wrapper_id: img_wrapper_id, img_id: img_id %}
+                    <div id="{{ img_wrapper_id }}" class="product-single__photo-wrapper js">
+                        <div class="product-single__photo">
+                            <img id="" class="" data-lazy="{{ image.src | img_url: '600x600' }}" data-src="{{ image.src }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ image.aspect_ratio }}" data-sizes="auto" alt="{{ image.alt | escape }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="medium-up--hide supplemental_image product-single__photo--flex-wrapper {% unless variant_title == current_title %} hide{% endunless %}" data-image-alt="{{ image.alt }}" data-image-id="{{ image.id }}">
+                <div class="product-single__photo--flex">
+                    {% include 'image-style' with small_style: true, width: height, height: height, wrapper_id: img_wrapper_id, img_id: img_id %}
+                    <div id="{{ img_wrapper_id }}" class="product-single__photo-wrapper js">
+                        <div class="product-single__photo">
+                            <img id="" class="" data-lazy="{{ image.src | img_url: '600x600' }}" data-src="{{ image.src }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ image.aspect_ratio }}" data-sizes="auto" alt="{{ image.alt | escape }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endunless %}
+            {% endfor %}
+        </div>
+
+        {% comment %} Images (thumbs) for medium up {% endcomment %}
+        <div class="grid__item product-single__photos small--hide image-thumbs">
+
+            {% comment %} var to calculate height of thumbnails {% endcomment %}
+            <script>var thumnbsVisible = 0;</script>
+            {% comment %} THUMBNAILS - medium up only {% endcomment %}
+            <div class="small--hide thumbnails-wrapper">
+                    <ul class="grid grid--uniform product-single__thumbnails product-single__thumbnails-{{ section.id }}">
+                        {% for image in product.images %}
+                        {% capture img_id %}SupplentalImage-{{ section.id }}-{{ image.id }}{% endcapture %}
+                        {% capture product_single %}{{product.title}}{% endcapture %}
+                        {% capture product_var1 %}{{current_variant.option2 | downcase }}{% endcapture %}
+                        {% capture product_var2 %}{{current_variant.option3 | split: " " | first | downcase }}{% endcapture %}
+                        {% capture product_var1_var2 %}{{product.title}} {{current_variant.option1}} {{current_variant.option2}}{% endcapture %}
+                        {% assign image_tag = image.alt | split: ' |' %}
+                        {% assign image_tag_first = image_tag | first | downcase %}
+                        {% assign image_tag_var = image_tag_first | split: ' balls ' %}
+                        {% assign image_tag_var1 = image_tag_var | last | downcase %}
+                        {% assign image_tag_var2 = image_tag_first | split: ' - ' %}
+                        {% assign image_tag_var22 = image_tag_var2 | first | downcase %}
+                        {% assign image_tag_var23 = image_tag_var22 | split: 'speks ' | last | downcase %}
+
+                        {% if product.title == 'Building Bars' or product.title == 'Gift Box' or product.title == 'Pack ‘Em Pouch' %}
+                        {% assign item_tag = product_single | downcase %}
+                        {% elsif product.title == 'Super 5 - 33mm Magnetic Balls' %}
+                        {% assign item_tag = product_var1_var2 | downcase %}
+                        {% else %}
+                        {% assign is_variant = image.variants.title %}
+                        {% assign item_tag = product_var1 | downcase %}
+                        {% endif %}
+                        {% for variant in image.variants %}
+                          {% assign variant_title = variant.title | downcase %}
+                        {% endfor %}
+                        {% assign balls_tag = image.alt | split: 'Balls ' | last | downcase %}
+                        {% assign stand_tag = image.alt | split: 'Stand ' | last | downcase %}
+                        {% assign current_title = current_variant.title | downcase %}
+                        {% assign stand_title = current_title | split: ' / ' | join | downcase%}
+                        {% if product.title contains "Speks" %}
+                       <li class="grid__item supplemental_thumb_image {{ product_thumbnail_width }} product-single__thumbnails-item js
+                        {% unless product_var1 == image_tag_var1 and product_var2 == image_tag_var23 %} hide{% endunless %}
+                        {% if image_tag_first contains "video" %} show <script>thumnbsVisible+=1</script>{% endif %}
+                        "
+                        data-image-alt="{{ image.alt }}"
+                        data-image-id="{% if image_tag_first contains "video" %}video{% else %}{{ image.id }}{% endif %}">
+                        {% elsif  product.title contains "supers" %}
+                        <li class="grid__item supplemental_thumb_image {{ product_thumbnail_width }} product-single__thumbnails-item js
+                         {% unless balls_tag == current_title %} hide{% endunless %}
+                         {% if image_tag_first contains "video" %} show <script>thumnbsVisible+=1</script>{% endif %}
+                         "
+                         data-image-alt="{{ image.alt }}"
+                         data-image-id="{% if image_tag_first contains "video" %}video{% else %}{{ image.id }}{% endif %}">
+                         {% elsif  product.title contains "Stand" %}
+                         <li class="grid__item supplemental_thumb_image {{ product_thumbnail_width }} product-single__thumbnails-item js
+                          {% unless stand_tag == stand_title %} hide{% endunless %}
+                          {% if image_tag_first contains "video" %} show <script>thumnbsVisible+=1</script>{% endif %}
+                          "
+                          data-image-alt="{{ image.alt }}"
+                          data-image-id="{% if image_tag_first contains "video" %}video{% else %}{{ image.id }}{% endif %}">
+
+                        {% else %}
+                        <li class="grid__item supplemental_thumb_image {{ product_thumbnail_width }} product-single__thumbnails-item js
+                         {% unless variant_title == current_title %} hide{% endunless %}
+                         {% if image_tag_first contains "video" %} show <script>thumnbsVisible+=1</script>{% endif %}
+                         "
+                         data-image-alt="{{ image.alt }}"
+                         data-image-id="{% if image_tag_first contains "video" %}video{% else %}{{ image.id }}{% endif %}">
+                         {% endif %}
+                            {% if item_tag == image_tag_first %}
+                                <script>thumnbsVisible+=1</script>
+                            {% elsif image_tag_first contains "video" %}
+                                <script>thumnbsVisible+=1</script>
+                            {% endif %}
+                            <a href="{{ image.src | img_url: product_image_zoom_size, scale: product_image_scale }}" class="text-link product-single__thumbnail product-single__thumbnail--{{ section.id }}"
+                            data-thumbnail-id={% if image_tag_first contains 'video' %}video{% else %}"{{ image.id }}"{% endif %}
+                            {% if enable_zoom %}data-zoom="{{ image.src | img_url: product_image_zoom_size, scale: product_image_scale }}" {% endif %}>
+                                <img class="product-single__thumbnail-image lazyload" data-src="{{ image.src | img_url: '110x110', scale: 2 }}" alt="{{ 'sections.featured_product.gallery_thumbnail_alt' | t: imageAlt: image.alt | escape }}">
+                            </a>
+                        </li>
+
+                        {% endfor %}
+                    </ul>
+                </div>
+                <script>
+                    switch(thumnbsVisible) {
+                        case 3:
+                            $('.thumbnails-wrapper').css("width", '32%');
+                            break;
+                        case 4:
+                            $('.thumbnails-wrapper').css("width", '24%');
+                            break;
+                        case 5:
+                            $('.thumbnails-wrapper').css("width", '19%');
+                            break;
+                        case 6:
+                            $('.thumbnails-wrapper').css("width", '15%');
+                            break;
+                        default:
+                            $('.thumbnails-wrapper').css("width", '24%');
+                        }
+
+                console.log(thumnbsVisible)
+                </script>
+            {%- assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image -%}
+
+            {% comment %} First or Featured image {% endcomment %}
+            {% for image in product.images %}
+            {% capture img_id %}FeaturedImage-{{ section.id }}-{{ image.id }}{% endcapture %}
+            {% capture img_class %}product-featured-img{% endcapture %}
+            {% capture zoom_img_id %}FeaturedImageZoom-{{ section.id }}-{{ image.id }}{% endcapture %}
+            {% capture img_wrapper_id %}{{ zoom_img_id }}-wrapper{% endcapture %}
+            {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <div class="featured_image product-single__photo--flex-wrapper {% unless featured_image == image %} hide{% endunless %}" data-image-id="{{ image.id }}">
+                <div class="product-single__photo--flex">
+                    {% include 'image-style' with small_style: true, width: height, height: height, wrapper_id: img_wrapper_id, img_id: img_id %}
+                    <div id="{{ img_wrapper_id }}" class="product-single__photo-wrapper js">
+                        <div id="{{ zoom_img_id }}" style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;" class="product-single__photo">
+                            <img id="{{ img_id }}" class="feature-row__image {{ img_class }} lazyload{% unless featured_image == image %} lazypreload{% endunless %}" src="{{ image | img_url: '300x300' }}" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ image.aspect_ratio }}" data-sizes="auto" alt="{{ image.alt | escape }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% if product.title contains 'Speks' or product.title contains 'supers' or product.title contains 'Fleks' or product.title contains 'Unblocks' %}
+            <div class="featured_image product-single__photo--flex-wrapper {% unless featured_image == image %} hide{% endunless %}" data-image-id="video">
+                    <div class="product-single__photo--flex">
+                        {% include 'image-style' with small_style: true, width: height, height: height, wrapper_id: img_wrapper_id, img_id: img_id %}
+                        <div id="{{ img_wrapper_id }}" class="product-single__photo-wrapper js">
+                            <!-- <div id="{{ zoom_img_id }}" style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;" class="product-single__photo">
+                                {{ product_video }}
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+
+        {% comment %} PRODUCT DESCRIPTION/SWATCHES/ADD TO BAG/PRODUCT DETAILS {% endcomment %}
+        <div class="grid__item product-description">
+
+
+            <div class="product-single__meta">
+                {% comment %} Product title from capture {% endcomment %}
+                {{ product_title }}
+                {{product_price}}
+                <div class="yotpo bottomLine"
+                    data-appkey="GILH98HCadjyllcIYxB0tXEhXyKScUBi8zH9sDyh"
+                    data-domain="{{shop.permanent_domain | escape }}"
+                    data-product-id="{{ product.id }}"
+                    data-product-models="{{ product.id }}"
+                    data-name="{{ product.title | escape }}"
+                    data-url="{{ shop.url }}{{ product.url }}"
+                    data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                    data-description="{{ product.description | escape }}"
+                    data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+                </div>
+
+                <div>
+
+
+
+                    {% capture "form_classes" -%}
+                    option-selectors product-form product-form-{{ section.id }}{% unless section.settings.show_variant_labels %} product-form--hide-variant-labels{% endunless %}{% if section.settings.enable_payment_button and product.has_only_default_variant%} product-form--payment-button-no-variants{% endif %}
+                    {%- endcapture %}
+
+
+                    {% form 'product', product, class:form_classes %}
+                    {% unless product.has_only_default_variant %}
+
+                    {% comment %} loops through product options 1) variant one 2) variant two {% endcomment %}
+                    {% for option in product.options_with_values %}
+                    {% if forloop.index0 == 0 %}
+                    <h6><b>1. color: </b>{% if option.name == "Color" %}<span id="ProductVariantOption1-{{ section.id }}">{{ option.value | downcase }} </span>{% else %}<span id="ProductVariantOption2-{{ section.id }}">{{ option.value | downcase }} </span>{% endif %}</h6>
+                    <div class="selector-wrapper radio-wrapper js product-form__item product-form__full">
+
+
+                        <!-- {% if section.settings.product_selector == 'radio' %} -->
+                        {% if option.name == "Color" %}
+                        <div >
+
+
+                                <fieldset {% if product.title == 'Blocks' %} class="single-option-radio single-option-selector square-selector" {% else %} class="single-option-radio single-option-selector circle-selector" {% endif %} name="{{ option.name | handleize }}" id="ProductSelect-option-{{ forloop.index0 }}">
+
+                                    {% assign option_index = forloop.index %}
+                                    {% for value in option.values %}
+                                        {% comment %} Sets special image icons for radio buttons {% endcomment %}
+                                        {% assign variant_label_state = true %}
+                                        {% unless product.variants[forloop.index0].available %}
+                                            {% assign variant_label_state = false %}
+                                        {% endunless %}
+
+                                        <input type="radio" {% if option.selected_value==value %} checked="checked" {% endif %} value="{{ value | escape }}" data-index="option{{ option_index }}" name="{{ option.name | handleize }}" class="single-option-selector__radio" id="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}">
+                                            <label for="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}" {% if product.title=='Speks 2.5mm Magnetic Balls' %} {% unless variant_label_state %} class="disabled" {% endunless %} {% endif %}>
+                                                {% if product.title == 'Blocks' %}
+                                                    {% assign img_name = value | replace:' ','_' | remove: '+' | append:'_s.png' %}
+                                                    <span class="variant_img other_assets"><img src="{{ img_name | asset_img_url: '50x' | split:'?' | first}}" alt=""></span>
+                                                {% else %}
+
+                                                    {% assign prod_name =  product.title | remove: ' &' | remove: ' -' | replace:' ','_' | downcase | append: '_' %}
+                                                    {% assign img_name = value | replace:' ','_' | replace:'/','_' | remove: '+' | downcase | append:'_dot.png' %}
+                                                    {% assign imgLink = prod_name | append: img_name %}
+                                                    <span class="variant_img spek_assets"><img src="{{ imgLink | asset_url | split:'?' | first}}" alt=""></span>
+                                                 {% endif %}
+                                            </label>
+                                    {% endfor %}
+                                </fieldset>
+
+                        </div>
+                        {% else %}
+                        <fieldset class="single-option-radio single-option-selector circle-selector" name="{{ option.name | handleize }}" id="ProductSelect-option-{{ forloop.index0 }}">
+                            {% assign option_index = forloop.index %}
+                            {% for value in option.values %}
+                            {% assign variant_label_state = true %}
+
+                            {% unless product.variants[forloop.index0].available %}
+                            {% assign variant_label_state = false %}
+                            {% endunless %}
+                            <input type="radio" {% if option.selected_value==value %} checked="checked" {% endif %} value="{{ value | escape }}" data-index="option{{ option_index }}" name="{{ option.name | handleize }}" class="single-option-selector__radio" id="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}">
+                                <label for="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}" {% if product.title=='Speks 2.5mm Magnetic Balls' %} {% unless variant_label_state %} class="disabled" {% endunless %} {% endif %}>
+                                    {% if product.title == 'Blocks' %}
+                                        {% assign img_name = value | replace:' ','_' | remove: '+' | append:'_s.png' %}
+                                        <span class="variant_img other_assets"><img src="{{ img_name | asset_img_url: '50x' | split:'?' | first}}" alt=""></span>
+                                    {% else %}
+
+                                        {% assign prod_name =  product.title | remove: ' &' | remove: ' -' | replace:' ','_' | downcase | append: '_' %}
+                                        {% assign img_name = value | replace:' ','_' | replace:'/','_' | remove: '+' | downcase | append:'_dot.png' %}
+                                        {% assign imgLink = prod_name | append: img_name %}
+                                        <span class="variant_img spek_assets">{{ value }}</span>
+                                    {% endif %}
+                                </label>
+
+                            {% endfor %}
+
+                        </fieldset>
+
+                        {% endif %}
+                                            {% comment %} Option2 Label {% endcomment %}
+
+                                                <!-- <label class="single-option-radio__label{% if option.name == 'Default' or option.name == 'Title' %} hidden-label{% endif %}" for="ProductSelect-option-{{ forloop.index0 }}"> -->
+
+
+                                                        <script>
+                                                            var inv_qty = {};
+                                                        {% for var in product.variants %}
+                                                          inv_qty[{{- var.id -}}] = {{ var.inventory_quantity | default: 0 }};
+                                                        {% endfor %}
+                                                        if(inv_qty[{{ current_variant.id}}]<11) {
+                                                            $('.stock-counter-wrapper').show();
+                                                        }else{
+                                                            $('.stock-counter-wrapper').hide();
+                                                        }
+                                                   </script>
+
+                                                        <div class='hidden'>
+                                                            Only <span id="ProductInventory2-{{ section.id }}">{{ current_variant.inventory_quantity }}</span> left in stock
+                                                        </div>
+                                                    </label>
+
+
+                        <!-- {% else %} -->
+                        <select class="single-option-selector__radio single-option-selector-{{ section.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+                            {% for value in option.values %}
+                            <option value="{{ value | escape }}" {% if option.selected_value==value %} selected="selected" {% endif %}>{{ value | escape }}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- {% endif %} -->
+                    </div>
+                    {% endif %}
+
+
+                    {% comment %} option 1 variant selections {% endcomment %}
+                    {% if forloop.index0 == 1 %}
+                    <!-- {{ color_menu }} -->
+
+                    {% comment %} Variant 1 not needed for Super right now {% endcomment %}
+                    {% if product.title != 'Super 5 - 33mm Magnetic Balls' %}
+                <div class="selector-wrapper radio-wrapper js product-form__item product-form__full">
+
+
+
+
+
+                        <div >
+                            {% comment %} Variant 1 Label & Stock Counter/Sold Out {% endcomment %}
+
+
+                            {% comment %} Picker type is set to button{% endcomment %}
+                            {% if section.settings.product_selector == 'radio' %}
+
+                              <!-- {% if product.title != 'Blocks'%}
+                              <label class="single-option-radio__label{% if option.name == 'Default' or option.name == 'Title' %} hidden-label{% endif %}" for="ProductSelect-option-{{ forloop.index0 }}">
+                                  <div>
+                                      <span id="ProductVariantOption1-{{ section.id }}">{{ current_variant.option1}} </span>
+                                    </div>
+                              </label>
+                              {% endif %} -->
+                              {% if option.name != "Size" %}
+                                <fieldset {% if product.title == 'Blocks' %} class="single-option-radio single-option-selector square-selector" {% else %} class="single-option-radio single-option-selector circle-selector" {% endif %} name="{{ option.name | handleize }}" id="ProductSelect-option-{{ forloop.index0 }}">
+
+                                    {% assign option_index = forloop.index %}
+                                    {% for value in option.values %}
+                                        {% comment %} Sets special image icons for radio buttons {% endcomment %}
+                                        {% assign variant_label_state = true %}
+                                        {% unless product.variants[forloop.index0].available %}
+                                            {% assign variant_label_state = false %}
+                                        {% endunless %}
+
+                                        <input type="radio" {% if option.selected_value==value %} checked="checked" {% endif %} value="{{ value | escape }}" data-index="option{{ option_index }}" name="{{ option.name | handleize }}" class="single-option-selector__radio" id="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}">
+                                            <label for="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}" {% if product.title=='Speks 2.5mm Magnetic Balls' %} {% unless variant_label_state %} class="disabled" {% endunless %} {% endif %}>
+                                                {% if product.title == 'Blocks' %}
+                                                    {% assign img_name = value | replace:' ','_' | remove: '+' | append:'_s.png' %}
+                                                    <span class="variant_img other_assets"><img src="{{ img_name | asset_img_url: '50x' | split:'?' | first}}" alt=""></span>
+                                                {% else %}
+
+                                                    {% assign prod_name =  product.title | remove: ' &' | remove: ' -' | replace:' ','_' | downcase | append: '_' %}
+                                                    {% assign img_name = value | replace:' ','_' | replace:'/','_' | remove: '+' | downcase | append:'_dot.png' %}
+                                                    {% assign imgLink = prod_name | append: img_name %}
+                                                    <span class="variant_img spek_assets"><img src="{{ imgLink | asset_img_url: '60x' | split:'?' | first}}" alt=""></span>
+                                                 {% endif %}
+                                            </label>
+                                    {% endfor %}
+                                </fieldset>
+
+                                {% else %}
+                                <fieldset class="single-option-radio single-option-selector circle-selector" name="{{ option.name | handleize }}" id="ProductSelect-option-{{ forloop.index0 }}">
+                                    {% assign option_index = forloop.index %}
+                                    {% for value in option.values %}
+                                    {% assign variant_label_state = true %}
+
+                                    {% unless product.variants[forloop.index0].available %}
+                                    {% assign variant_label_state = false %}
+                                    {% endunless %}
+                                    <input type="radio" {% if option.selected_value==value %} checked="checked" {% endif %} value="{{ value | escape }}" data-index="option{{ option_index }}" name="{{ option.name | handleize }}" class="single-option-selector__radio" id="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}">
+                                        <label for="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}" {% if product.title=='Speks 2.5mm Magnetic Balls' %} {% unless variant_label_state %} class="disabled" {% endunless %} {% endif %}>
+                                            {% if product.title == 'Blocks' %}
+                                                {% assign img_name = value | replace:' ','_' | remove: '+' | append:'_s.png' %}
+                                                <span class="variant_img other_assets"><img src="{{ img_name | asset_img_url: '50x' | split:'?' | first}}" alt=""></span>
+                                            {% else %}
+
+                                                {% assign prod_name =  product.title | remove: ' &' | remove: ' -' | replace:' ','_' | downcase | append: '_' %}
+                                                {% assign img_name = value | replace:' ','_' | replace:'/','_' | remove: '+' | downcase | append:'_dot.png' %}
+                                                {% assign imgLink = prod_name | append: img_name %}
+                                                <span class="variant_img spek_assets">{{ value }}</span>
+                                            {% endif %}
+                                        </label>
+
+                                    {% endfor %}
+
+                                </fieldset>
+                                {% endif %}
+                        </div>
+                        {% comment %} Picker type is set to dropdown {% endcomment %}
+                        {% else %}
+                            <select class="single-option-selector__radio single-option-selector-{{ section.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+                                {% for value in option.values %}
+                                <option value="{{ value | escape }}" {% if option.selected_value==value %} selected="selected" {% endif %}>{{ value | escape }}</option>
+                                {% endfor %}
+                            </select>
+
+                        {% endif %}
+
+
+                </div>
+                    {% endif %}
+                    {% endif %}
+
+
+
+                    {% comment %} option 2 variant selections {% endcomment %}
+                    {% if forloop.index0 == 2 %}
+                    <h6>2. size: </h6>
+                    <div class="selector-wrapper radio-wrapper js product-form__item product-form__full">
+
+
+                        <!-- {% if section.settings.product_selector == 'radio' %} -->
+
+                        <fieldset class="single-option-radio single-option-selector circle-selector" name="{{ option.name | handleize }}" id="ProductSelect-option-{{ forloop.index0 }}">
+                            {% assign option_index = forloop.index %}
+                            {% for value in option.values %}
+                            {% assign variant_label_state = true %}
+
+                            {% unless product.variants[forloop.index0].available %}
+                            {% assign variant_label_state = false %}
+                            {% endunless %}
+                            <input type="radio" {% if option.selected_value==value %} checked="checked" {% endif %} value="{{ value | escape }}" data-index="option{{ option_index }}" name="{{ option.name | handleize }}" class="single-option-selector__radio" id="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}">
+                                <label for="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}" {% if product.title=='Speks 2.5mm Magnetic Balls' %} {% unless variant_label_state %} class="disabled" {% endunless %} {% endif %}>
+                                    {% if product.title == 'Blocks' %}
+                                        {% assign img_name = value | replace:' ','_' | remove: '+' | append:'_s.png' %}
+                                        <span class="variant_img other_assets"><img src="{{ img_name | asset_img_url: '50x' | split:'?' | first}}" alt=""></span>
+                                    {% else %}
+
+                                        {% assign prod_name =  product.title | remove: ' &' | remove: ' -' | replace:' ','_' | downcase | append: '_' %}
+                                        {% assign img_name = value | replace:' ','_' | replace:'/','_' | remove: '+' | downcase | append:'_dot.png' %}
+                                        {% assign imgLink = prod_name | append: img_name %}
+                                        <span class="variant_img spek_assets">{{ value }}</span>
+                                    {% endif %}
+                                </label>
+
+                            {% endfor %}
+
+                        </fieldset>
+                                            {% comment %} Option2 Label {% endcomment %}
+
+                                                <label class="single-option-radio__label{% if option.name == 'Default' or option.name == 'Title' %} hidden-label{% endif %}" for="ProductSelect-option-{{ forloop.index0 }}">
+
+                                                        <div>
+                                                            <span id="ProductVariantOption2-{{ section.id }}">{{ option.value }} </span>
+                                                        </div>
+                                                        <script>
+                                                            var inv_qty = {};
+                                                        {% for var in product.variants %}
+                                                          inv_qty[{{- var.id -}}] = {{ var.inventory_quantity | default: 0 }};
+                                                        {% endfor %}
+                                                        if(inv_qty[{{ current_variant.id}}]<11) {
+                                                            $('.stock-counter-wrapper').show();
+                                                        }else{
+                                                            $('.stock-counter-wrapper').hide();
+                                                        }
+                                                   </script>
+
+                                                        <div class='hidden'>
+                                                            Only <span id="ProductInventory2-{{ section.id }}">{{ current_variant.inventory_quantity }}</span> left in stock
+                                                        </div>
+                                                    </label>
+
+
+                        <!-- {% else %} -->
+                        <select class="single-option-selector__radio single-option-selector-{{ section.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+                            {% for value in option.values %}
+                            <option value="{{ value | escape }}" {% if option.selected_value==value %} selected="selected" {% endif %}>{{ value | escape }}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- {% endif %} -->
+                    </div>
+
+                    {% endif %}
+
+                    {% endfor %}
+
+                    {% endunless %}
+
+                    <div class="shipping-quantity hide">
+
+                        <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
+                            {% for variant in product.variants %}
+                            {% if variant.available %}
+                            <option {% if variant==product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                                {{ variant.title }}
+                            </option>
+                            {% else %}
+                            <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    {% if product.title contains "Freebie" %}
+                    {% else %}
+                    <div class="product-form__item product-form__item--submit{% if section.settings.enable_payment_button %} product-form__item--payment-button{% endif %}{% if product.has_only_default_variant %} product-form__item--no-variants{% endif %}">
+                        <button  {% unless current_variant.available %}disabled="disabled" {% endunless %}{% unless current_variant.available %}disabled="disabled" {% endunless %} class="btn btn__yellow-reverse product-form__cart-submit{% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %}">
+                            <span id="AddToCartText-{{ section.id }}">
+                                {% unless current_variant.available %}
+                                {{ 'products.product.sold_out' | t }}
+                                {% endunless %}
+                                add to bag
+                            </span>
+                        </button>
+
+                        {% if section.settings.enable_payment_button %}
+                        {{ form | payment_button }}
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endform %}
+                </div>
+
+                {% comment %} END PRODUCT SELECT! {% endcomment %}
+               {% comment %}  {% if product.title contains 'Speks' or product.title contains 'Fleks' %}
+                    <div class="wrapper small--hide">
+                        <div class="grid">
+                            <div class="grid__item one-whole">
+                                {{ product_video }}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}{% endcomment %}
+
+                {% comment %} PRODUCT DESCRIPTION {% endcomment %}
+                <div class="product-single__description rte">
+                    {{ product.description }}
+                </div>
+
+
+
+                {% comment %} DISCLAIMER - SPEKS ONLY {% endcomment %}
+                {% if product.title contains 'Speks' %}
+                    {% include 'speks-disclaimer' %}
+                {% endif %}
+
+                {% if product.title contains 'Fleks' %}
+                    {% include 'speks-disclaimer-fleks' %}
+                {% endif %}
+
+                <!-- {% include 'product-icons' %} -->
+
+                {% comment %} SOCIAL MEDIA BTNS {% endcomment %}
+                {% if section.settings.show_share_buttons %}
+                {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% unless product == empty %}
+<script type="application/json" id="ProductJson-{{ section.id }}">
+    {{product | json}}
+</script>
+{% endunless %}
+
+
+{% schema %}
+{
+  "name": "Product pages",
+  "settings": [
+    {
+        "type": "link_list",
+        "id": "sub_nav",
+        "label": "Sub Nav",
+        "default": "main-menu"
+    },
+    {
+      "type": "select",
+      "id": "image_size",
+      "label": "Image size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "full",
+          "label": "Full-width"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_variant_labels",
+      "label": "Show variant labels",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_zoom",
+      "label": "Enable image zoom",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_payment_button",
+      "label": "Show dynamic checkout button",
+      "info": "Lets customers check out directly using a familiar payment method. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share_buttons",
+      "label": "Show social sharing buttons",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "product_selector",
+      "label": "Picker type",
+      "options": [
+        {
+          "value": "radio",
+          "label": "Button"
+        },
+        {
+          "value": "select",
+          "label": "Dropdown"
+        }
+      ]
+    },
+    {
+      "type": "video_url",
+      "id": "video_url_speks",
+      "label": "Speks Video link",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ]
+    },
+    {
+      "type": "video_url",
+      "id": "video_url_fleks",
+      "label": "Fleks Video link",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ]
+    },
+    {
+      "type": "video_url",
+      "id": "video_url_unblocks",
+      "label": "Unblocks Video link",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ]
+    },
+    {
+      "type": "video_url",
+      "id": "video_url_super",
+      "label": "Super Video link",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ]
+    },
+    {
+      "type": "video_url",
+      "id": "video_url_blocks",
+      "label": "Blocks Video link",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ]
+    },
+    {
+      "type": "video_url",
+      "id": "video_url_blocks_m_series",
+      "label": "Blocks M-Series Video link",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video",
+      "category": "Video"
+    }
+  ]
+}
+{% endschema %}

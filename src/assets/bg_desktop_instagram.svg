@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg preserveAspectRatio="none" 
+
+ width="1440px" height="492px" viewBox="0 0 1440 492" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+    <title>Rectangle</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-Page-HD" transform="translate(0.000000, -4724.000000)" fill="#9BCBEB">
+            <g id="Backgrounds" transform="translate(804.500000, 3687.000000) scale(1, -1) translate(-804.500000, -3687.000000) translate(-159.000000, 2158.000000)">
+                <path d="M159,-1.70530257e-13 C247,31.3333333 412.666667,47 656,47 C899.333333,47 1213.66667,31.3333333 1599,-1.70530257e-13 L1599,492 L159,492 L159,-1.70530257e-13 Z" id="Rectangle"></path>
+            </g>
+        </g>
+    </g>
+</svg>

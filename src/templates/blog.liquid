@@ -1,0 +1,138 @@
+{% paginate blog.articles by 9 %}
+
+  {%- assign blog_title = blog.title -%}
+
+  {% if current_tags %}
+    {% capture blog_title %}{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}{% endcapture %}
+  {% endif %}
+  <section class="blog-index__header">
+    <h1 class="blog-title visually-hidden">{{ blog_title }}</h1>
+    <div class=" gutter-left blog-index__header-item"><img src="{{ '../assets/speks-ed-green.png' | asset_url }}"></div>
+    <h2 class=" gutter-right h3 blog-index__header-item">{{ page_description | escape }}</h2>
+
+</section>
+
+
+
+
+<div>
+ <ul class="gutter">
+   <li class="filtro">
+    {% assign tags = blog.all_tags %}
+    <h6><label>level:</label></h6>
+    <select class="coll-filter">
+      <option value="">all</option>
+      {% for t in tags %}
+      {% assign tag = t | strip %}
+      {% if current_tags contains tag %}
+      <option value="{{ tag | handle }}" selected>{{ tag | split:'tipo-' }}</option>
+      {% elsif blog.all_tags contains tag %}
+      <option value="{{ tag | handle }}">{{ tag | split:'tipo-' }}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+  </li>
+ </ul>
+</div>
+
+
+  <!-- {% if current_tags %}
+      <h4>{{ current_tags.first }}</h4>
+  {% endif %} -->
+
+  {% comment %}
+
+  Article Previews
+  ====================
+  {% endcomment %}
+
+  <section class="blog-index__articles">
+{% assign articles = blogs.speksed.articles | sort: 'title' %}
+  {% for article in articles %}
+    {% if current_tags and current_tags.first == article.tags.first  %}
+  <a class= "blog-index__articles-preview" href="{{ article.url }}">
+    {% if article.image %}
+        {% include 'responsive-image' with
+          image: article.image,
+          max_width: 1024,
+          max_height: 1024
+        %}
+    {% endif %}
+    <h6>{{ article.title }}</h6>
+</a>
+{% elsif current_tags == blank %}
+<a class= "blog-index__articles-preview" href="{{ article.url }}">
+  {% if article.image %}
+      {% include 'responsive-image' with
+        image: article.image,
+        max_width: 1024,
+        max_height: 1024
+      %}
+  {% endif %}
+  <h6>{{ article.title }}</h6>
+</a>
+{% endif %}
+  {% endfor %}
+</section>
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+
+{% endpaginate %}
+{% section 'instagram-feed' %}
+
+<script>
+
+  /* Product Tag Filters - Good for any number of filters on any type of collection page.
+     Give you product tag filter select element a class of coll-filter.
+     Give your collection select a class of coll-picker.
+     Brought to you by Caroline Schnapp. */
+  Shopify.queryParams = {};
+  if (location.search.length) {
+    for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+      aKeyValue = aCouples[i].split('=');
+      if (aKeyValue.length > 1) {
+        Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+      }
+    }
+  }
+  jQuery('.coll-picker').change(function() {
+    if (jQuery(this).val()) {
+      location.href = '/collections/' + jQuery(this).val();
+    }
+    else {
+      location.href = '/collections/all';
+    }
+  });
+  var collFilters = jQuery('.coll-filter');
+  collFilters.change(function() {
+    delete Shopify.queryParams.page;
+    var newTags = [];
+    collFilters.each(function() {
+      if (jQuery(this).val()) {
+        newTags.push(jQuery(this).val());
+      }
+    });
+    {% if collection.handle %}
+    var newURL = '/collections/{{ collection.handle }}';
+    if (newTags.length) {
+      newURL += '/' + newTags.join('+');
+    }
+    var search = jQuery.param(Shopify.queryParams);
+    if (search.length) {
+      newURL += '?' + search;
+    }
+    location.href = newURL;
+    {% else %}
+    if (newTags.length) {
+      Shopify.queryParams.constraint = newTags.join('+');
+    }
+    else {
+      delete Shopify.queryParams.constraint;
+    }
+    location.search = jQuery.param(Shopify.queryParams);
+    {% endif %}
+  });
+
+</script>

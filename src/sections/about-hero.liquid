@@ -1,0 +1,50 @@
+<section class="about__hero">
+  {% if section.settings.title %}
+  <h1>{{ section.settings.title }}</h1>
+  {% endif %}
+  <div class="about__gif">
+    {% if section.settings.image != blank %}
+      {% include 'responsive-image' with
+        image: section.settings.image,
+        max_width: 1000,
+        max_height: 545
+      %}
+    {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+  </div>
+  {% if section.settings.text %}
+  <h4 class="h4">{{ section.settings.text }}</h4>
+  {% endif %}
+</section>
+
+{% schema %}
+  {
+    "name": "About Hero",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Headline",
+        "default": "About Us"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Gif Counter"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Gif Label"
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "About Hero",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}

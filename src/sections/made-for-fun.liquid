@@ -1,0 +1,108 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add the "Image with text" section in the theme editor.
+
+  Theme Store required settings
+  - Image
+  - Heading: title of the block
+  - Text: description of the block
+
+  Theme Store optional settings
+  - Button label: label associated with the button
+  - Button link: link of the button
+{%- endcomment -%}
+
+<section class="image-with-text  image-with-text__fun">
+  <div class="image-1">
+  {% if section.settings.image_1 != blank %}
+    {% include 'responsive-image' with
+      image: section.settings.image_1,
+      max_width: 845,
+      max_height: 845
+    %}
+    {% endif %}
+  </div>
+    <div class="image-2">
+    {% if section.settings.image_2 != blank %}
+      {% include 'responsive-image' with
+        image: section.settings.image_2,
+        max_width: 845,
+        max_height: 845
+      %}
+      {% endif %}
+    </div>
+
+  <div class="image-with-text__text">
+    {% if section.settings.title != blank %}
+      <h2 class="h1">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+    {% if section.settings.sub_title != blank %}
+      <h3 class="h3">{{ section.settings.sub_title | escape }}</h2>
+    {% endif %}
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a class = "btn btn__green" href="{{ section.settings.button_link }}">
+        {{ section.settings.button_label | escape }}
+      </a>
+    {% endif %}
+  </div>
+
+  <div class="image-3">
+  {% if section.settings.image_3 != blank %}
+    {% include 'responsive-image' with
+      image: section.settings.image_3,
+      max_width: 845,
+      max_height: 845
+    %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Made for Fun",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Image 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "Image 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_3",
+        "label": "Image 3"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub Heading"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Made for Fun",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

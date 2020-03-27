@@ -1,0 +1,455 @@
+<!doctype html>
+<html class="no-js supports-no-cookies" lang="{{ shop.locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_accent }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {%- if settings.favicon != blank -%}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {%- endif -%}
+
+  {%- capture seo_title -%}
+    {{ page_title }}
+    {%- if current_tags -%}
+      {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {%- endif -%}
+    {%- if current_page != 1 -%}
+      &ndash; {{ 'general.meta.page' | t: page: current_page }}
+    {%- endif -%}
+    {%- assign escaped_page_title = page_title | escape -%}
+    {%- unless escaped_page_title contains shop.name -%}
+      &ndash; {{ shop.name }}
+    {%- endunless -%}
+  {%- endcapture -%}
+  <title>{{ seo_title | strip }}</title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  {% include 'social-meta-tags' %}
+  {% include 'style-tags', layout: 'theme' %}
+  {% include 'css-variables' %}
+
+  <link rel="stylesheet" href="https://use.typekit.net/ecc4apl.css">
+
+  <script>
+  var theme = {
+    strings: {
+      addToCart: {{ 'products.product.add_to_cart' | t | json }},
+      soldOut: {{ 'products.product.sold_out' | t | json }},
+      unavailable: {{ 'products.product.unavailable' | t | json }},
+      increase_quantity: {{ 'cart.general.increase_quantity' | t | json }},
+      reduce_quantity: {{ 'cart.general.reduce_quantity' | t | json }},
+      showMore: {{ 'general.filters.show_more' | t | json }},
+      showLess: {{ 'general.filters.show_less' | t | json }},
+      addressError: {{ 'sections.map.address_error' | t | json }},
+      addressNoResults: {{ 'sections.map.address_no_results' | t | json }},
+      addressQueryLimit: {{ 'sections.map.address_query_limit_html' | t | json }},
+      authError: {{ 'sections.map.auth_error_html' | t | json }}
+    },
+    moneyFormat: {{ shop.money_format | json }}
+  }
+
+  document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+</script>
+  <!-- {{ '//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js' | script_tag }} -->
+  <!--[if (gt IE 9)|!(IE)]><!-->
+  <script src="{{ 'vendor.js' | asset_url }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+  {% include 'script-tags', layout: 'theme' %}
+
+  {{ content_for_header }}
+
+
+<!-- YOTPO -->
+<script async type="text/javascript">(function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/GILH98HCadjyllcIYxB0tXEhXyKScUBi8zH9sDyh/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();</script>
+
+
+<!-- GTM -->
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-97045785-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+ gtag('config', 'UA-97045785-1');
+</script>
+
+
+
+</head>
+<style>
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100vh;
+	z-index: 99;
+	background: rgba(255, 255, 255, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lds-ellipsis {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #84bd28;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+  background: #007367;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+  background: #007367;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+</style>
+
+<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
+  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+  <div id="CartDrawer" class="drawer drawer--right drawer--has-fixed-footer">
+    <!-- <div class="drawer__fixed-header"> -->
+      <div class="drawer__header">
+        <div class="drawer__title">{{ 'cart.general.title' | t }}</div>
+        <div class="drawer__close">
+          <button type="button" class="icon-fallback-text drawer__close-button js-drawer-close">
+              {% include 'icon-close' %}
+          </button>
+        </div>
+      </div>
+    <!-- </div> -->
+    <div class="drawer__inner">
+      <div id="CartContainer" class="drawer__cart"></div>
+    </div>
+</div>
+<div class="page-container" id="PageContainer">
+  {% section 'header' %}
+  <div class="se-pre-con"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
+
+
+  <main role="main" id="MainContent">
+    {{ content_for_layout }}
+  </main>
+  {% section 'footer' %}
+  </div>
+
+  {% comment %}
+  Enable ajax cart drawer
+{% endcomment %}
+<script id="CartTemplate" type="text/template">
+    {% raw %}
+      <form action="/cart" method="post" novalidate class="cart ajaxcart">
+
+        <div class="ajaxcart__inner ajaxcart__inner--has-fixed-footer">
+          {{#items}}
+          <!--current cart items !-->
+          <div class="ajaxcart__row">
+            <div class="ajaxcart__product" data-line="">
+              <div class="grid grid--half-gutters">
+                <div class="grid__item one-quarter">
+                  <a href="{{url}}" class="ajaxcart__product-image"><img src="{{img}}" alt="{{name}}"></a>
+                  <div class="cart__remove"><a href="/cart/change?line={{line}}&amp;quantity=0" class="ajaxifyCart--remove" data-line="{{line}}">Remove</a></div>
+                </div>
+                <div class="grid__item three-quarters">
+                  <div class="ajaxcart__product-name-wrapper">
+                    <a href="{{url}}" class="ajaxcart__product-name h4">{{name}}</a>
+                    {{#if variation}}
+                      <span class="ajaxcart__product-meta">{{variation}}</span>
+                    {{/if}}
+                    {{#properties}}
+                      {{#each this}}
+                        {{#if this}}
+                          <span class="ajaxcart__product-meta">{{@key}}: {{this}}</span>
+                        {{/if}}
+                      {{/each}}
+                    {{/properties}}
+                  </div>
+                  <div class="grid grid--table">
+                    <div class="grid__item two-thirds">
+                       {{#if price}}
+                       <div class="ajaxcart__qty">
+                        <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--minus" data-id="{{key}}" data-qty="{{itemMinus}}" data-line="{{line}}" aria-label="{% endraw %}{{ 'cart.label.reduce_quantity' | t }}{% raw %}">
+                          <span class="icon icon-minus" aria-hidden="true">-</span>
+                          <span class="icon__fallback-text" aria-hidden="true">&minus;</span>
+                        </button>
+                        <input type="text" name="updates[]" class="ajaxcart__qty-num" value="{{itemQty}}" min="0" data-id="{{key}}" data-line="{{line}}" aria-label="quantity" pattern="[0-9]*">
+                        <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--plus" data-id="{{key}}" data-line="{{line}}" data-qty="{{itemAdd}}" aria-label="{% endraw %}{{ 'cart.label.increase_quantity' | t }}{% raw %}">
+                          <span class="icon icon-plus" aria-hidden="true">+</span>
+                          <span class="icon__fallback-text" aria-hidden="true">+</span>
+                        </button>
+                      </div>
+                      {{/if}}
+                    </div>
+                    <div class="grid__item one-third text-right">
+                    {{#if discountsApplied}}
+                      <small class="ajaxcart-item__price-strikethrough"><s>{{{originalLinePrice}}}</s></small>
+                      <br><span>{{{linePrice}}}</span>
+                    {{else}}
+                       <span>{{{linePrice}}}</span>
+                    {{/if}}
+                    </div>
+                  </div>
+                  {{#if discountsApplied}}
+                    <div class="grid grid--table">
+                      <div class="grid__item text-right">
+                        {{#each discounts}}
+                          <small class="ajaxcart-item__discount">{{ this.title }}</small><br>
+                        {{/each}}
+                      </div>
+                    </div>
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+
+          </div>
+          {{/items}}
+
+          {% endraw %}
+          <!-- {% if settings.cart_notes_enable %}{% raw %}
+            <div class="ajaxcart__row">
+              <label for="CartSpecialInstructions" class="ajaxcart__note txt--minor">{% endraw %}{{ 'cart.general.note' | t }}{% raw %}</label>
+              <textarea name="note" class="input-full" id="CartSpecialInstructions">{{note}}</textarea>
+            </div>
+          {% endraw %}{% endif %} -->
+          {% raw %}
+          <div class="ajaxcart__freebie">
+              <p><b>You are <span>{{{freebiePrice}}}</span> away from a free gift</b></p>
+          </div>
+          <style>
+              .ajaxcart__freebie_bar{
+                  margin-top: 10px;
+                  width:100%;
+                  height: 15px;
+                  background-color: #ccc;
+              }
+              .ajaxcart__freebie_progress{
+                  width:80%;
+                  height: 15px;
+                  background-color: #84bd00;
+              }
+          </style>
+          <div class="ajaxcart__freebie_bar">
+              <div class="ajaxcart__freebie_progress"></div>
+          </div>
+          {% endraw %}
+
+
+          <!--freebie selection here !-->
+          <div id="freebieItems">
+              <p><b>Freebies</b><br><span style="font-size:.9em">Congrats! You've earned a free accessory!<br>Grab one below:</span</p>
+          <!--PACK 'EM Pouch !-->
+          <!-- <div class="ajaxcart__row">
+            <div class="ajaxcart__product" data-line="{{line}}">
+              <div class="grid grid--half-gutters">
+                <div class="grid__item one-quarter">
+                  <div class="ajaxcart__product-image"><img src="https://cdn.shopify.com/s/files/1/1755/2561/products/supers_bag_800x800_f2f2f2_small.jpg?v=1539370732" alt="{{name}}"></div>
+                </div>
+                <div class="grid__item three-quarters">
+                  <div class="ajaxcart__product-name-wrapper">
+                    <div class="ajaxcart__freebie-name">Pack 'Em Pouch</div>
+                    <div class="ajaxcart__freebie-sub-name">Travel-ready neoprene pouch made for Supers.</div>
+                    <div class="cart__remove"><a href="/cart/add?id=4333922484308&amp;quantity=1" class="ajaxifyCart--add" data-id="4333922484308" style="color:#84bd00">Add to cart</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <!--Building Bars !-->
+          <!-- <div class="ajaxcart__row">
+            <div class="ajaxcart__product" data-line="{{line}}">
+              <div class="grid grid--half-gutters">
+                <div class="grid__item one-quarter">
+                  <div class="ajaxcart__product-image"><img src="https://cdn.shopify.com/s/files/1/1755/2561/products/blocks_bars_bag_800x800_f2f2f2_2cdc3830-b6d3-4e3b-929f-e3cbed00e2c6_small.jpg?v=1541960507" alt="{{name}}"></div>
+                </div>
+                <div class="grid__item three-quarters">
+                  <div class="ajaxcart__product-name-wrapper">
+                    <div class="ajaxcart__freebie-name">Building Bars</div>
+                    <div class="ajaxcart__freebie-sub-name">Combine with Blocks by Speks for a building boost.</div>
+                    <div class="cart__remove"><a href="/cart/add?id=15407021883479&amp;quantity=1" class="ajaxifyCart--add" data-id="15407021883479" style="color:#84bd00">Add to cart</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <!--Show Off Stand Green !-->
+          <div class="ajaxcart__row">
+            <div class="ajaxcart__product" data-line="{{line}}">
+              <div class="grid grid--half-gutters">
+                <div class="grid__item one-quarter">
+                  <div class="ajaxcart__product-image"><img src="https://cdn.shopify.com/s/files/1/1755/2561/products/2018_1025_Accessories_FreebieStand_Green_Plain_f2f2f2_800x800_d26975e1-667f-4bea-85ce-f3322ba40aec_small.jpg?v=1541960547" alt="{{name}}"></div>
+                </div>
+                <div class="grid__item three-quarters">
+                  <div class="ajaxcart__product-name-wrapper">
+                    <div class="ajaxcart__freebie-name">The Show-Off Stand Green</div>
+                    <div class="ajaxcart__freebie-sub-name">Build and smash your Speks in style on this metal stand.</div>
+                    <div class="cart__remove"><a href="/cart/add?id=15407090794583&amp;quantity=1" class="ajaxifyCart--add" data-id="15407090794583" style="color:#84bd00">Add to cart</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Show Off Stand White !-->
+          <div class="ajaxcart__row">
+            <div class="ajaxcart__product" data-line="{{line}}">
+              <div class="grid grid--half-gutters">
+                <div class="grid__item one-quarter">
+                  <div class="ajaxcart__product-image"><img src="https://cdn.shopify.com/s/files/1/1755/2561/products/2018_1025_Accessories_FreebieStand_White_Plain_f2f2f2_800x800_bde9f15a-7306-44b3-9b3e-f35822efb210_small.jpg?v=1541962615" alt="{{name}}"></div>
+                </div>
+                <div class="grid__item three-quarters">
+                  <div class="ajaxcart__product-name-wrapper">
+                    <div class="ajaxcart__freebie-name">The Show-Off Stand White</div>
+                    <div class="ajaxcart__freebie-sub-name">Build and smash your Speks in style on this metal stand.</div>
+                    <div class="cart__remove"><a href="/cart/add?id=15407121367127&amp;quantity=1" class="ajaxifyCart--add" data-id="15407121367127" style="color:#84bd00">Add to cart</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Show Off Stand Mint !-->
+          <div class="ajaxcart__row">
+            <div class="ajaxcart__product" data-line="{{line}}">
+              <div class="grid grid--half-gutters">
+                <div class="grid__item one-quarter">
+                  <div class="ajaxcart__product-image"><img src="https://cdn.shopify.com/s/files/1/1755/2561/products/01_Stand_Sm_Mint_Plain_800x800_200eff11-6563-47c0-bb2e-4c5680b6928b_300x300.jpg?v=1573836110" alt="{{name}}"></div>
+                </div>
+                <div class="grid__item three-quarters">
+                  <div class="ajaxcart__product-name-wrapper">
+                    <div class="ajaxcart__freebie-name">The Show-Off Stand Mint</div>
+                    <div class="ajaxcart__freebie-sub-name">Build and smash your Speks in style on this metal stand.</div>
+                    <div class="cart__remove"><a href="/cart/add?id=31172937875543&amp;quantity=1" class="ajaxifyCart--add" data-id=31172937875543 style="color:#84bd00">Add to cart</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Gift Box !-->
+          <div class="ajaxcart__row">
+            <div class="ajaxcart__product" data-line="{{line}}">
+              <div class="grid grid--half-gutters">
+                <div class="grid__item one-quarter">
+                  <div class="ajaxcart__product-image"><img src="https://cdn.shopify.com/s/files/1/1755/2561/products/Giftbox_Page_Images-06_1080x.png?v=1545428538" alt="{{name}}"></div>
+                </div>
+                <div class="grid__item three-quarters">
+                  <div class="ajaxcart__product-name-wrapper">
+                    <div class="ajaxcart__freebie-name">Gift Box</div>
+                    <div class="ajaxcart__freebie-sub-name">Our answer to your holiday gifting conundrum, aka “how do I wrap this?”</div>
+                    <div class="cart__remove"><a href="/cart/add?id=15864092590167&amp;quantity=1" class="ajaxifyCart--add" data-id="15864092590167" style="color:#84bd00">Add to cart</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+          <!--end freebie selection here !-->
+
+          {% raw %}
+        </div>
+
+        <div class="ajaxcart__footer ajaxcart__footer--fixed text-center">
+          <div class="ajaxcart__subtotal">
+            <div class="grid grid--table">
+              <div class="grid__item two-thirds">
+                <span class="ajaxcart__subtotal-title h3">{% endraw %}{{ 'cart.general.subtotal' | t }}{% raw %}</span>
+              </div>
+              <div class="grid__item one-third text-right">
+                <span>{{{totalPrice}}}</span>
+              </div>
+            </div>
+            {{#if totalCartDiscountApplied}}
+              <p class="ajaxcart__savings text-center"><em>{{{totalCartDiscount}}}</em></p>
+            {{/if}}
+          </div>
+          <p class="text-center ajaxcart__note txt--minor">{% endraw %}{{ 'cart.general.shipping_at_checkout' | t }}{% raw %}</p>
+          <button type="submit" class="btn btn--full cart__checkout btn__green-reverse" name="checkout">
+            {% endraw %}{{ 'cart.general.checkout' | t }}{% raw %}
+          </button>
+        </div>
+      </form>
+    {% endraw %}
+  </script>
+<script id="JsQty" type="text/template">
+    {% raw %}
+      <div class="js-qty">
+        <button type="button" class="js-qty__adjust js-qty__adjust--minus" data-id="{{key}}" data-qty="{{itemMinus}}" aria-label="{% endraw %}{{ 'cart.label.reduce_quantity' | t }}{% raw %}">
+          <span class="icon icon-minus" aria-hidden="true"></span>
+          <span class="icon__fallback-text" aria-hidden="true">&minus;</span>
+        </button>
+        <input type="text" class="js-qty__num" value="{{itemQty}}" min="1" data-id="{{key}}" aria-label="quantity" pattern="[0-9]*" name="{{inputName}}" id="{{inputId}}">
+        <button type="button" class="js-qty__adjust js-qty__adjust--plus" data-id="{{key}}" data-qty="{{itemAdd}}" aria-label="{% endraw %}{{ 'cart.label.increase_quantity' | t }}{% raw %}">
+          <span class="icon icon-plus" aria-hidden="true"></span>
+          <span class="icon__fallback-text" aria-hidden="true">+</span>
+        </button>
+      </div>
+    {% endraw %}
+  </script>
+
+
+
+</body>
+<script>	$(document).ready(function() {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut("slow");;
+	});</script>
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=LVgYAN"></script>
+</html>

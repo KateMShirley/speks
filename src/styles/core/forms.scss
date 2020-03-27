@@ -1,0 +1,97 @@
+form {
+  margin: 0;
+}
+
+a,
+area,
+button,
+[role='button'],
+input,
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
+}
+
+input,
+textarea,
+select {
+  font-size: 1.6rem;
+  max-width: 100%;
+  border: 1px solid $color-border;
+  border-radius: 0;
+
+  &[disabled] {
+    border-color: $color-disabled-border;
+    background-color: $color-disabled;
+    cursor: default;
+  }
+}
+
+button,
+input[type='submit'],
+label[for] {
+  cursor: pointer;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+// Force option color (affects IE only)
+option {
+  background-color: $color-body;
+  color: $color-body-text;
+}
+
+.input-error {
+  border-color: $color-error;
+  background-color: $color-error-bg;
+  color: $color-body-text;
+}
+
+.klaviyo-form{
+  form{
+    padding-right: 50px !important;
+    padding-left: 50px !important;
+  }
+  p{
+    font-family: $sofia !important;
+  }
+  input[type="email"]{
+    width: 65% !important;
+    display: block !important;
+    margin-right: 0 !important;
+    margin-left: auto !important;
+    border: 2px solid #007367 !important;
+    height: 42px !important;
+  }
+  button{
+    font-family: $sofia !important;
+  }
+  button.dsZBqf{
+    position: relative !important;
+    top: -52px !important;
+    color: #007367 !important;
+    border: 2px solid #007367 !important;
+    background-color: white !important;
+    transition: all .2s ease-in !important;
+    &:hover{
+      background-color: #007367 !important;
+      color: white !important;
+    }
+  }
+  button.iewkgl{
+    margin-right: -35px  !important;
+    padding-left: 0  !important;
+    padding-right: 0  !important;
+    border-bottom: 2px solid teal  !important;
+    padding-bottom: 3px  !important;
+
+  }
+}

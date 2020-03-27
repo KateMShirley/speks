@@ -1,0 +1,54 @@
+
+
+<div class="grid-view-item">
+  <a class="grid-view-item__link grid-view-item__image-container" href="{{ variant.url | within: collection }}">
+    {% capture img_id %}ProductCardImage-{{ section.id }}-{{ result.id }}{% endcapture %}
+    {% capture wrapper_id %}ProductCardImageWrapper-{{ section.id }}-{{ product.id }}{% endcapture %}
+    {% if item.variants.size > 1 %}
+      {%- assign img_url = variant.image.src | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+    {% else %}
+      {%- assign img_url = item.featured_image.src | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+    {% endif %}
+    {% unless variant.featured_image == blank %}
+      {% include 'image-style' with image: product.featured_image, width: max_height, height: max_height, small_style: true, wrapper_id: wrapper_id, img_id: img_id %}
+    {% endunless %}
+
+    <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper js">
+      <div style="padding-top:{% unless product.featured_image == blank %}{{ 1 | divided_by: product.featured_image.aspect_ratio | times: 100}}%{% else %}100%{% endunless %};">
+        <img id="{{ img_id }}"
+             class="grid-view-item__image lazyload"
+             src="{{ product.featured_image | img_url: '300x300' }}"
+             data-src="{{ img_url }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+             data-sizes="auto"
+             alt="{{ product.featured_image.alt | escape }}">
+      </div>
+    </div>
+
+    <noscript>
+      {% capture image_size %}{{ max_height }}x{{ max_height }}{% endcapture %}
+      <img class="grid-view-item__image" src="{{ product.featured_image.src | img_url: image_size, scale: 2 }}" alt="{{ product.featured_image.alt }}" style="max-width: {{ max_height | times: product.featured_image.aspect_ratio }}px;">
+    </noscript>
+    {%- assign money_price = variant.price | money -%}
+    <div class="grid-view-item__title">{{ item.title }} {% if item.variants.size > 1 %}- {{ variant.title }}{% endif %}</div>
+    <div class="grid-view-item__meta">{{ money_price }}</div>
+  </a>
+  {% form 'product', item %}
+  <select name="id" id="" class="hide">
+    <option value="{{ variant.id }}">
+    </option>
+  </select>
+  <div id="ctaBtn">
+    <button type="submit" name="add" {% unless variant.available %}disabled="disabled" {% endunless %}{% unless variant.available %}disabled="disabled" {% endunless %} class="btn--secondary btn">
+        <span id="AddToCartText-{{ section.id }}">
+            {% unless variant.available %}
+            {{ 'products.product.sold_out' | t }}
+            {% else %}
+            {{ 'products.product.add_to_cart' | t }}
+            {% endunless %}
+        </span>
+    </button>
+  </div>
+  {% endform %}
+</div>

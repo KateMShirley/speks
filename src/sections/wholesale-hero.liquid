@@ -1,0 +1,26 @@
+<section class="wholesale__hero ">
+  {% if section.settings.title %}
+  <h1 class="gutter">{{ section.settings.title }}</h1>
+  {% endif %}
+</section>
+
+{% schema %}
+  {
+    "name": "Wholesale Hero",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Headline",
+        "default": "Wholesale"
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "Wholesale Hero",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}
